@@ -14,7 +14,7 @@
   <div class="nav-left">
     <a href="index.html">HOME</a>
     <a href="#">LEADERBOARD</a>
-    <a href="#">TROPHIES</a>
+    <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
   </div>
   <div class="nav-right">
     <span class="wallet-display">
@@ -86,6 +86,14 @@
 <div id="balance-warning" class="popup" style="display:none;">
   <div>You can't bet more than your Wallet balance!</div>
   <button onclick="closeBalanceWarning()">OK</button>
+</div>
+
+<!-- TROPHIES MODAL -->
+<div id="trophies-modal" class="popup" style="display:none;">
+  <h2>Your Trophies</h2>
+  <div id="trophies-list" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;"></div>
+  <br>
+  <button onclick="closeTrophiesModal()">CLOSE</button>
 </div>
 
 <script src="script.js"></script>
