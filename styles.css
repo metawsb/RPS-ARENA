@@ -4,6 +4,7 @@ body {
   color: white;
   text-align: center;
   margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 header {
@@ -11,7 +12,7 @@ header {
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Prevent overflow on very small screens */
 }
 
 .avatar {
@@ -62,7 +63,7 @@ header {
   opacity: 0;
 }
 
-/* ALL BUTTONS POINTER + HOVER */
+/* BUTTONS */
 button {
   cursor: pointer;
   transition: 0.3s;
@@ -126,6 +127,7 @@ button:hover {
   color: yellow;
 }
 
+/* Heart Fade Animation */
 @keyframes fadeHeart {
   0% { opacity: 1; transform: translateX(0); }
   100% { opacity: 0; transform: translateX(10px); }
@@ -137,6 +139,7 @@ button:hover {
   font-weight: bold;
 }
 
+/* POPUP MODALS */
 .popup {
   position: fixed;
   top: 50%;
@@ -156,6 +159,7 @@ button:hover {
   word-wrap: break-word;
 }
 
+/* TROPHIES */
 .trophies img {
   width: 70px;
   height: 70px;
@@ -164,7 +168,7 @@ button:hover {
   margin: 5px;
 }
 
-/* -------------------- MOBILE NAVIGATION -------------------- */
+/* MOBILE NAVIGATION FOR GAME PAGE */
 .mobile-menu-icon {
   display: none;
   font-size: 30px;
@@ -175,6 +179,7 @@ button:hover {
 .mobile-menu {
   display: none;
   flex-direction: column;
+  align-items: flex-end;
   background-color: #111;
   position: absolute;
   top: 70px;
@@ -186,20 +191,28 @@ button:hover {
 }
 
 .mobile-menu a {
+  display: block;
   color: white;
   text-decoration: none;
   margin: 5px 0;
+  padding: 5px 10px;
+  width: 100%;
+  text-align: right;
 }
 
 .mobile-menu a:hover {
   color: gold;
 }
 
-/* -------------------- MOBILE RESPONSIVE -------------------- */
+/* RESPONSIVE */
 @media (max-width: 768px) {
 
+  /* Keep player and opponent SIDE BY SIDE even on mobile */
   header {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .avatar {
@@ -215,17 +228,30 @@ button:hover {
     font-size: 18px;
   }
 
-  .wagers button, #choices button {
-    font-size: 16px;
-    padding: 8px 16px;
-  }
-
   .hand-display {
     font-size: 50px;
   }
 
+  .winner {
+    font-size: 70px !important;
+  }
+
+  .loser {
+    font-size: 40px !important;
+  }
+
+  #choices button {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
   .balance-change {
     font-size: 20px;
+  }
+
+  .popup {
+    padding: 20px;
+    font-size: 18px;
   }
 
   .nav-left, .desktop-menu {
@@ -237,19 +263,5 @@ button:hover {
     position: absolute;
     top: 20px;
     right: 20px;
-  }
-
-  .popup {
-    padding: 20px;
-    font-size: 18px;
-  }
-
-  .trophies img {
-    width: 40px;
-    height: 40px;
-  }
-
-  body {
-    overflow-x: hidden;
   }
 }
