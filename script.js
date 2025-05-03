@@ -175,7 +175,6 @@ function adjustWallet(amount) {
         changeDisplay.style.color = amount >= 0 ? "limegreen" : "red";
         changeDisplay.textContent = `${amount >= 0 ? "+" : ""}PHP ${amount}`;
 
-        // DEBUG LOG
         walletChangeCount++;
         console.log("Wallet changed. Count this round:", walletChangeCount);
     }
