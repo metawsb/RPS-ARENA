@@ -13,7 +13,14 @@
       <a href="#">HOME</a>
       <a href="#">LEADERBOARD</a>
     </div>
-    <div class="nav-right">
+    <div class="nav-right desktop-menu">
+      <a href="#">LOGIN</a>
+      <a href="#">SIGN UP</a>
+    </div>
+    <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="#">HOME</a>
+      <a href="#">LEADERBOARD</a>
       <a href="#">LOGIN</a>
       <a href="#">SIGN UP</a>
     </div>
@@ -34,6 +41,13 @@
       <button onclick="alert('Settings page coming soon!')">Settings</button>
     </div>
   </header>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 
 </body>
 </html>
