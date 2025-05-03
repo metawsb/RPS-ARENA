@@ -4,6 +4,7 @@ let playerLives = 3;
 let opponentLives = 3;
 let timerInterval;
 let timerValue = 10;
+let totalGain = 0;
 
 let opponents = [
   { name: "Justin Bieber", avatar: "images/opponent1.png" },
@@ -141,19 +142,31 @@ function checkEndMatch() {
 
 function showResult() {
   let message = "";
+  let percentChange = 0;
+
   if (playerLives > 0) {
     wallet += wager;
-    message = `<span style='color:limegreen;'>Congratulations!</span><br>
-               <span style='font-size:28px;'>YOU WIN</span><br>
-               <span style='font-size:36px;'>+PHP ${wager}</span>`;
+    totalGain += wager;
+    percentChange = ((totalGain / 10000) * 100).toFixed(1);
+    message = `<span style='font-size:28px;'>CONGRATULATIONS</span><br>
+               <span>YOU'VE WON</span><br>
+               <span style='color:limegreen; font-size:36px; font-weight:bold;'>+PHP ${wager}</span>`;
     addTrophy();
   } else {
     wallet -= wager;
-    message = `<span style='color:red;'>Better Luck Next Time</span><br>
-               <span style='font-size:28px;'>YOU LOSE</span><br>
-               <span style='font-size:36px;'>-PHP ${wager}</span>`;
+    totalGain -= wager;
+    percentChange = ((totalGain / 10000) * 100).toFixed(1);
+    message = `<span style='font-size:28px;'>BETTER LUCK NEXT TIME</span><br>
+               <span>YOU'VE LOST</span><br>
+               <span style='color:red; font-size:36px; font-weight:bold;'>-PHP ${wager}</span>`;
   }
-  document.getElementById("wallet").textContent = "PHP " + wallet;
+
+  const gainText = totalGain >= 0
+    ? `<span style="color:limegreen;">(+${totalGain} / ${percentChange}%)</span>`
+    : `<span style="color:red;">(${totalGain} / ${percentChange}%)</span>`;
+
+  document.querySelector(".wallet-box").innerHTML = `WALLET: PHP ${wallet} ${gainText}`;
+
   document.getElementById("result-message").innerHTML = message;
   document.getElementById("result-popup").style.display = "block";
 }
@@ -203,7 +216,8 @@ function addTrophy() {
 
 function fullReset() {
   wallet = 10000;
-  document.getElementById("wallet").textContent = "PHP " + wallet;
+  totalGain = 0;
+  document.querySelector(".wallet-box").innerHTML = "WALLET: PHP 10000";
   document.getElementById("trophy-case").innerHTML = "";
   document.getElementById("wager-selection").style.display = "block";
   document.getElementById("choices").style.display = "none";
@@ -231,6 +245,7 @@ function stopTimer() {
 function updateTimerDisplay() {
   const timer = document.getElementById("timer");
   timer.textContent = `${timerValue} seconds left`;
+  timer.style.fontWeight = "bold";
   if (timerValue <= 3) {
     timer.style.color = "red";
   } else {
