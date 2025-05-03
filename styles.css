@@ -6,6 +6,8 @@ body {
   margin: 0;
 }
 
+/* ----------- HEADER & PLAYER/OPPONENT ----------- */
+
 header {
   display: flex;
   justify-content: space-around;
@@ -32,6 +34,13 @@ header {
   color: gold;
 }
 
+/* ----------- WALLET ----------- */
+
+.wallet-wrapper {
+  text-align: center;
+  width: 100%;
+}
+
 .wallet-box {
   background-color: black;
   padding: 10px 20px;
@@ -43,12 +52,7 @@ header {
   display: inline-block;
 }
 
-.wallet-wrapper {
-  text-align: center;
-  width: 100%;
-}
-
-}
+/* ----------- HEALTH BAR & HEARTS ----------- */
 
 .health-bar {
   font-size: 28px;
@@ -64,6 +68,8 @@ header {
   opacity: 0;
 }
 
+/* ----------- BUTTONS: WAGER, CHOICES, RESET ----------- */
+
 .wagers button, .popup button {
   margin: 5px;
   padding: 10px 25px;
@@ -72,6 +78,17 @@ header {
   border: 2px solid gold;
   border-radius: 6px;
   font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wagers button:hover, .popup button:hover {
+  background-color: gold;
+  color: black;
+}
+
+#choices {
+  text-align: center;  /* FIX: center the Rock/Paper/Scissors buttons */
 }
 
 .choices button {
@@ -82,7 +99,7 @@ header {
   color: white;
   border: 2px solid gold;
   border-radius: 10px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -95,29 +112,29 @@ header {
   color: black;
 }
 
-
-.hand-display {
-  display: flex;
-  justify-content: space-around;
-  font-size: 70px;
-}
-
-.balance-change {
-  font-size: 26px;
-  font-weight: bold;
-}
-
-.trophies img {
-  width: 70px;
-  height: 70px;
-  margin: 5px;
-}
-
 .reset-btn {
   margin-top: 20px;
   padding: 10px 25px;
   background-color: #444;
+  color: white;
   border: 2px solid gold;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background-color: gold;
+  color: black;
+}
+
+/* ----------- HAND DISPLAY ----------- */
+
+.hand-display {
+  display: flex;
+  justify-content: center;
+  font-size: 70px;
+  gap: 30px;
 }
 
 .winner {
@@ -134,32 +151,58 @@ header {
   animation: pulseTie 1s infinite;
 }
 
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: black;
-  border: 3px solid gold;
-  padding: 40px;
-  border-radius: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-}
-
 @keyframes pulseTie {
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.1); opacity: 0.8; }
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* ----------- BALANCE CHANGE ----------- */
+
+.balance-change {
+  font-size: 26px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ----------- TROPHIES ----------- */
+
+.trophies img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  border: 2px solid gold;
+  margin: 5px;
+}
+
+/* ----------- POPUP ----------- */
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: white;
+  border: 3px solid gold;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px gold;
+  z-index: 1000;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ----------- HEART LOSS ANIMATION ----------- */
+
 @keyframes fadeHeart {
   0% { opacity: 1; transform: translateX(0); }
   100% { opacity: 0; transform: translateX(10px); }
 }
 
-/* Mobile layout */
+/* ----------- MOBILE LAYOUT ----------- */
+
 @media (max-width: 768px) {
   header {
     flex-direction: row;
@@ -212,5 +255,10 @@ header {
   .popup {
     width: 85%;
     font-size: 18px;
+  }
+
+  .trophies img {
+    width: 40px;
+    height: 40px;
   }
 }
