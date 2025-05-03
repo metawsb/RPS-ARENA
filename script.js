@@ -16,7 +16,7 @@ function startMatch(amount) {
   playerLives = 3;
   opponentLives = 3;
   document.getElementById("wager-selection").style.display = "none";
-  document.getElementById("choices").style.display = "block";
+  document.getElementById("choices").style.display = "flex";
   updateHealthBars();
   resetHandStyles();
   document.getElementById("player-hand").textContent = "❔";
@@ -25,10 +25,8 @@ function startMatch(amount) {
 }
 
 function updateHealthBars() {
-  document.getElementById("player-health").innerHTML = "❤️".repeat(playerLives) + 
-    '<span id="player-lost" class="lost-heart"></span>';
-  document.getElementById("opponent-health").innerHTML = "❤️".repeat(opponentLives) + 
-    '<span id="opponent-lost" class="lost-heart"></span>';
+  document.getElementById("player-hearts").textContent = "❤️".repeat(playerLives);
+  document.getElementById("opponent-hearts").textContent = "❤️".repeat(opponentLives);
 }
 
 function play(playerChoice) {
@@ -76,6 +74,11 @@ function animateHeartLoss(who) {
   el.textContent = "-1❤️";
   el.style.opacity = 1;
   el.style.animation = "fadeHeart 0.8s forwards";
+  setTimeout(() => {
+    el.textContent = "";
+    el.style.opacity = 0;
+    el.style.animation = "";
+  }, 800);
 }
 
 function getResult(player, opponent) {
@@ -94,6 +97,7 @@ function resetHandStyles() {
 }
 
 function highlightHands(winner) {
+  resetHandStyles();
   if (winner === "player") {
     document.getElementById("player-hand").classList.add("winner");
     document.getElementById("opponent-hand").classList.add("loser");
@@ -160,7 +164,7 @@ function resetGame(keepOpponent = false) {
   updateHealthBars();
   document.getElementById("result-popup").style.display = "none";
   if (!keepOpponent) {
-    document.getElementById("choices").style.display = "block";
+    document.getElementById("choices").style.display = "flex";
   }
 }
 
