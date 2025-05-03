@@ -126,7 +126,8 @@ nav {
   padding: 5px 10px;
   width: 100%;
   text-align: right;
-  font-weight: bold;  /* MAKE THE WORDS BOLD */
+  font-weight: 700; /* Guaranteed bold */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .mobile-menu a:hover {
