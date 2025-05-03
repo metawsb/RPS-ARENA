@@ -24,8 +24,15 @@
     <a href="#">SIGN OUT</a>
   </div>
 
-  <!-- MOBILE DROPDOWN -->
+  <!-- MOBILE MENU ICON -->
   <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+
+  <!-- MOBILE WALLET (NEW!) -->
+  <div class="mobile-wallet">
+    WALLET: PHP <span id="nav-wallet-mobile">10000</span>
+  </div>
+
+  <!-- MOBILE MENU -->
   <div id="mobile-menu" class="mobile-menu">
     <a href="index.html">HOME</a>
     <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
@@ -104,12 +111,23 @@
 
 <script src="script.js"></script>
 
-<!-- Mobile Toggle -->
+<!-- Mobile Toggle Script -->
 <script>
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
+
+  // Update mobile wallet when balance changes
+  function syncMobileWallet() {
+    const navWallet = document.getElementById('nav-wallet');
+    const navWalletMobile = document.getElementById('nav-wallet-mobile');
+    if (navWallet && navWalletMobile) {
+      navWalletMobile.textContent = navWallet.textContent;
+    }
+  }
+  // Call sync when the page loads and every second (in case balance changes)
+  setInterval(syncMobileWallet, 1000);
 </script>
 
 </body>
