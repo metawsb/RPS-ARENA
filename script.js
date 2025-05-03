@@ -1,3 +1,9 @@
+// Always remove any leftover timer when loading the page
+window.addEventListener('load', function() {
+    const oldTimer = document.getElementById("timer");
+    if (oldTimer) oldTimer.remove();
+});
+
 let wallet = 10000;
 let wager = 0;
 let playerLives = 3;
