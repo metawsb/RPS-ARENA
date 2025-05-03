@@ -10,6 +10,7 @@ let playerWins = 0;
 let opponentWins = 0;
 let roundInProgress = false;
 let roundLocked = false;  // Prevents scoring twice per round
+let walletChangeCount = 0;  // DEBUG counter
 
 function updateWalletDisplay() {
     document.getElementById("nav-wallet").textContent = wallet;
@@ -33,6 +34,7 @@ function startMatch(amount) {
     if (roundInProgress) return;
     roundInProgress = true;
     roundLocked = false;
+    walletChangeCount = 0;
 
     stopTimer();
 
@@ -172,6 +174,10 @@ function adjustWallet(amount) {
         const changeDisplay = document.getElementById("balance-change");
         changeDisplay.style.color = amount >= 0 ? "limegreen" : "red";
         changeDisplay.textContent = `${amount >= 0 ? "+" : ""}PHP ${amount}`;
+
+        // DEBUG LOG
+        walletChangeCount++;
+        console.log("Wallet changed. Count this round:", walletChangeCount);
     }
 }
 
@@ -186,6 +192,7 @@ function newMatch() {
     opponentWins = 0;
     roundInProgress = false;
     roundLocked = false;
+    walletChangeCount = 0;
 
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
@@ -197,6 +204,7 @@ function rematch() {
     document.getElementById("result-popup").style.display = "none";
     roundInProgress = true;
     roundLocked = false;
+    walletChangeCount = 0;
     resetTimer();
 }
 
@@ -210,6 +218,7 @@ function endMatch() {
     opponentWins = 0;
     roundInProgress = false;
     roundLocked = false;
+    walletChangeCount = 0;
 
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
@@ -232,11 +241,11 @@ function fullReset() {
     opponentWins = 0;
     roundInProgress = false;
     roundLocked = false;
+    walletChangeCount = 0;
 
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
-// Timer Functions
 function resetTimer() {
     stopTimer();
     timerValue = 10;
@@ -281,7 +290,6 @@ function autoLose() {
     showRoundResult(false);
 }
 
-// Trophy Modal
 function openTrophiesModal() {
     const trophyList = document.getElementById("trophies-list");
     trophyList.innerHTML = "";
