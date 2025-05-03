@@ -27,7 +27,7 @@
   <!-- MOBILE MENU ICON -->
   <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
 
-  <!-- MOBILE WALLET (NEW!) -->
+  <!-- MOBILE WALLET -->
   <div class="mobile-wallet">
     WALLET: PHP <span id="nav-wallet-mobile">10000</span>
   </div>
@@ -111,14 +111,13 @@
 
 <script src="script.js"></script>
 
-<!-- Mobile Toggle Script -->
+<!-- MOBILE MENU AND WALLET SYNC SCRIPT -->
 <script>
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
 
-  // Keep mobile wallet balance updated
   function syncMobileWallet() {
     const navWallet = document.getElementById('nav-wallet');
     const navWalletMobile = document.getElementById('nav-wallet-mobile');
@@ -126,9 +125,7 @@
       navWalletMobile.textContent = navWallet.textContent;
     }
   }
-  setInterval(syncMobileWallet, 1000);
-</script>
-  // Call sync when the page loads and every second (in case balance changes)
+
   setInterval(syncMobileWallet, 1000);
 </script>
 
