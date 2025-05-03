@@ -24,7 +24,7 @@
     <a href="#">SIGN OUT</a>
   </div>
 
-  <!-- MOBILE DROPDOWN MENU -->
+  <!-- MOBILE DROPDOWN -->
   <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
   <div id="mobile-menu" class="mobile-menu">
     <a href="index.html">HOME</a>
@@ -82,7 +82,7 @@
   <button class="reset-btn" onclick="fullReset()">RESET ALL</button>
 </main>
 
-<!-- Result pop-up -->
+<!-- POPUPS -->
 <div id="result-popup" class="popup" style="display:none;">
   <div id="result-message"></div>
   <button onclick="newMatch()">New Match</button>
@@ -90,13 +90,11 @@
   <button onclick="endMatch()">End</button>
 </div>
 
-<!-- Not enough balance pop-up -->
 <div id="balance-warning" class="popup" style="display:none;">
   <div>You can't bet more than your Wallet balance!</div>
   <button onclick="closeBalanceWarning()">OK</button>
 </div>
 
-<!-- TROPHIES MODAL -->
 <div id="trophies-modal" class="popup" style="display:none;">
   <h2>Your Trophies</h2>
   <div id="trophies-list" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;"></div>
@@ -106,7 +104,7 @@
 
 <script src="script.js"></script>
 
-<!-- MOBILE MENU TOGGLE SCRIPT -->
+<!-- Mobile Toggle -->
 <script>
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
