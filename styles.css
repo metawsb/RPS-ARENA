@@ -151,7 +151,17 @@ button:hover {
   text-transform: uppercase;
   box-shadow: 0 0 20px gold;
   z-index: 1000;
+  max-width: 90vw;
+  word-wrap: break-word;
 }
+
+@media (max-width: 768px) {
+  .popup {
+    padding: 20px;
+    font-size: 18px;
+  }
+}
+
 
 .trophies img {
   width: 70px;
