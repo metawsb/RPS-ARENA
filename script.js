@@ -21,6 +21,15 @@ function startMatch(amount) {
   document.getElementById("choices").style.display = "flex";
   updateHealthBars();
   resetHandStyles();
+
+  // Dynamically create timer only once
+  if (!document.getElementById("timer")) {
+    let timerDiv = document.createElement("div");
+    timerDiv.id = "timer";
+    timerDiv.className = "timer";
+    document.getElementById("timer-placeholder").appendChild(timerDiv);
+  }
+
   resetTimer();
 }
 
@@ -221,6 +230,10 @@ function fullReset() {
   document.getElementById("trophy-case").innerHTML = "";
   document.getElementById("wager-selection").style.display = "block";
   document.getElementById("choices").style.display = "none";
+
+  const timerEl = document.getElementById("timer");
+  if (timerEl) timerEl.remove(); // Completely remove the timer on full reset
+
   resetGame(true);
 }
 
@@ -244,6 +257,8 @@ function stopTimer() {
 
 function updateTimerDisplay() {
   const timer = document.getElementById("timer");
+  if (!timer) return;
+
   timer.textContent = `${timerValue} seconds left`;
   timer.style.fontWeight = "bold";
   if (timerValue <= 3) {
