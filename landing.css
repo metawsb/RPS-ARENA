@@ -59,37 +59,18 @@ nav {
     font-weight: bold;
 }
 
-.main-heading {
-    font-size: 36px;
-    margin-top: 50px;
-    color: gold;
-}
-
-.subheading {
-    font-size: 18px;
+.mobile-wallet {
+    display: none;
     color: white;
-    margin-bottom: 30px;
-}
-
-img {
-    width: 60%;
-    max-width: 400px;
-}
-
-button {
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #222;
-    color: white;
-    border: 2px solid gold;
-    border-radius: 6px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: gold;
-    color: black;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #111;
+    padding: 5px 10px;
+    border: 1px solid gold;
+    border-radius: 5px;
+    z-index: 3000;
 }
 
 @media (max-width: 768px) {
@@ -101,11 +82,7 @@ button:hover {
         display: block;
     }
 
-    .main-heading {
-        font-size: 28px;
-    }
-
-    img {
-        width: 90%;
+    .mobile-wallet {
+        display: block;
     }
 }
