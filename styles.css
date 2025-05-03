@@ -12,7 +12,7 @@ header {
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  flex-wrap: wrap; /* Prevent overflow on very small screens */
+  flex-wrap: wrap; /* Prevent overflow */
 }
 
 .avatar {
@@ -198,6 +198,7 @@ button:hover {
   padding: 5px 10px;
   width: 100%;
   text-align: right;
+  font-weight: bold; /* MAKE THE WORDS BOLD */
 }
 
 .mobile-menu a:hover {
