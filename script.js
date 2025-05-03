@@ -9,7 +9,7 @@ let timerInterval = null;
 let playerWins = 0;
 let opponentWins = 0;
 let roundInProgress = false;
-let roundLocked = false;  // NEW: prevents scoring twice per round
+let roundLocked = false;  // Prevents scoring twice per round
 
 function updateWalletDisplay() {
     document.getElementById("nav-wallet").textContent = wallet;
@@ -104,7 +104,7 @@ function getSymbol(choice) {
 
 function determineWinner(player, opponent) {
     if (roundLocked) return;
-    roundLocked = true; // Prevent scoring twice
+    roundLocked = true;
 
     if (player === opponent) {
         highlightTie();
@@ -165,7 +165,7 @@ function showRoundResult(isTie) {
 }
 
 function adjustWallet(amount) {
-    if (roundLocked) {  // Double-check no duplicate wallet changes
+    if (roundLocked) {
         wallet += amount;
         totalGain += amount;
         updateWalletDisplay();
