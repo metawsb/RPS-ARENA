@@ -1,7 +1,7 @@
-// Always remove any leftover timer when loading the page
-window.addEventListener('load', function() {
-    const oldTimer = document.getElementById("timer");
-    if (oldTimer) oldTimer.remove();
+// Always remove old timer when page loads (for iPhone Safari caching issues)
+document.addEventListener("DOMContentLoaded", function() {
+    const existingTimer = document.getElementById("timer");
+    if (existingTimer) existingTimer.remove();
 });
 
 let wallet = 10000;
@@ -28,13 +28,15 @@ function startMatch(amount) {
   updateHealthBars();
   resetHandStyles();
 
-  // Dynamically create timer only once
-  if (!document.getElementById("timer")) {
-    let timerDiv = document.createElement("div");
-    timerDiv.id = "timer";
-    timerDiv.className = "timer";
-    document.getElementById("timer-placeholder").appendChild(timerDiv);
-  }
+  // Always remove any previous timer (handles desktop + mobile)
+  const existingTimer = document.getElementById("timer");
+  if (existingTimer) existingTimer.remove();
+
+  // Create a brand-new timer
+  let timerDiv = document.createElement("div");
+  timerDiv.id = "timer";
+  timerDiv.className = "timer";
+  document.getElementById("timer-placeholder").appendChild(timerDiv);
 
   resetTimer();
 }
@@ -211,10 +213,14 @@ function resetGame(keepOpponent = false) {
   document.getElementById("balance-change").textContent = "";
   updateHealthBars();
   document.getElementById("result-popup").style.display = "none";
+
+  // Remove old timer if exists
+  const existingTimer = document.getElementById("timer");
+  if (existingTimer) existingTimer.remove();
+
   if (!keepOpponent) {
     document.getElementById("choices").style.display = "flex";
   }
-  resetTimer();
 }
 
 function rotateOpponent() {
@@ -237,8 +243,8 @@ function fullReset() {
   document.getElementById("wager-selection").style.display = "block";
   document.getElementById("choices").style.display = "none";
 
-  const timerEl = document.getElementById("timer");
-  if (timerEl) timerEl.remove(); // Completely remove the timer on full reset
+  const existingTimer = document.getElementById("timer");
+  if (existingTimer) existingTimer.remove();
 
   resetGame(true);
 }
