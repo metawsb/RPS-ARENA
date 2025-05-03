@@ -23,6 +23,8 @@
     </span>
     <a href="#">SIGN OUT</a>
   </div>
+
+  <!-- MOBILE DROPDOWN MENU -->
   <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
   <div id="mobile-menu" class="mobile-menu">
     <a href="index.html">HOME</a>
@@ -103,11 +105,14 @@
 </div>
 
 <script src="script.js"></script>
+
+<!-- MOBILE MENU TOGGLE SCRIPT -->
 <script>
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
 </script>
+
 </body>
 </html>
