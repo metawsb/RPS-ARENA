@@ -14,6 +14,7 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 40px;
   background-color: #111;
   font-size: 18px;
@@ -27,6 +28,13 @@ nav {
 }
 
 .nav-left a:hover, .nav-right a:hover {
+  color: gold;
+}
+
+/* Wallet styling in nav */
+.wallet-display {
+  margin-right: 15px;
+  font-weight: bold;
   color: gold;
 }
 
