@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RPS Arena Ultimate - Landing</title>
-  <link rel="stylesheet" href="landing.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Ultimate Arena</title>
+    <link rel="stylesheet" href="landing.css">
 </head>
 <body>
 
-  <nav>
+<nav>
     <div class="nav-left">
-      <a href="#">HOME</a>
-      <a href="#">LEADERBOARD</a>
+        <a href="#">HOME</a>
+        <a href="#">LEADERBOARD</a>
     </div>
     <div class="nav-right desktop-menu">
-      <a href="#">LOGIN</a>
-      <a href="#">SIGN UP</a>
+        <a href="#">LOGIN</a>
+        <a href="#">SIGN UP</a>
     </div>
+
+    <!-- MOBILE MENU ICON -->
     <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+
+    <!-- MOBILE MENU -->
     <div id="mobile-menu" class="mobile-menu">
-      <a href="#">HOME</a>
-      <a href="#">LEADERBOARD</a>
-      <a href="#">LOGIN</a>
-      <a href="#">SIGN UP</a>
+        <a href="#">HOME</a>
+        <a href="#">LEADERBOARD</a>
+        <a href="#">LOGIN</a>
+        <a href="#">SIGN UP</a>
     </div>
-  </nav>
+</nav>
 
-  <header class="hero">
-    <h1>RPS ULTIMATE ARENA</h1>
-    <p class="tagline">Your Hand. Your Strategy. Your Fortune.</p>
-    <div class="icons">
-      <img src="images/rock_icon.png" alt="Rock" class="symbol">
-      <img src="images/paper_icon.png" alt="Paper" class="symbol">
-      <img src="images/scissors_icon.png" alt="Scissors" class="symbol">
-    </div>
-    <div class="modes">
-      <button onclick="location.href='game.html'">Quick Match</button>
-      <button onclick="alert('Tournament mode coming soon!')">Tournament</button>
-      <button onclick="alert('Private Match mode coming soon!')">Private Match</button>
-      <button onclick="alert('Settings page coming soon!')">Settings</button>
-    </div>
-  </header>
+<h1 class="main-heading">RPS ULTIMATE ARENA</h1>
+<p class="subheading">Your Hand. Your Strategy. Your Fortune.</p>
 
-  <script>
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
+<img src="images/rps.png" alt="Rock Paper Scissors">
+
+<div>
+    <button onclick="location.href='game.html'">Quick Match</button>
+    <button>Tournament</button>
+    <button>Private Match</button>
+    <button>Settings</button>
+</div>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+</script>
 
 </body>
 </html>
