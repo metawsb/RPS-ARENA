@@ -8,7 +8,7 @@ let timerValue = 10;
 let timerInterval = null;
 let playerWins = 0;
 let opponentWins = 0;
-let roundInProgress = false; // Prevents multiple starts
+let roundInProgress = false;
 
 // Update wallet UI
 function updateWalletDisplay() {
@@ -24,7 +24,6 @@ function updateWalletDisplay() {
     }
 }
 
-// Always stop timers on page load
 document.addEventListener("DOMContentLoaded", function() {
     if (timerInterval) {
         clearInterval(timerInterval);
@@ -33,21 +32,21 @@ document.addEventListener("DOMContentLoaded", function() {
     updateWalletDisplay();
 });
 
-// Start match — now protected against double-click
+// Start match — double-click safe
 function startMatch(amount) {
-    if (roundInProgress) return; // Block double clicks
-    roundInProgress = true;  // Lock the round
+    if (roundInProgress) return;
+    roundInProgress = true;
 
     stopTimer();
 
     if (amount > wallet) {
         document.getElementById("balance-warning").style.display = "block";
-        roundInProgress = false; // Allow retrying
+        roundInProgress = false;
         return;
     }
     wagerAmount = amount;
 
-    // Disable wager buttons immediately to prevent spam clicks
+    // Disable wager buttons
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = true);
 
     currentOpponent = generateOpponent();
@@ -64,11 +63,12 @@ function startMatch(amount) {
     resetTimer();
 }
 
+// ✅ UPDATED OPPONENTS LIST
 function generateOpponent() {
     const opponents = [
         { name: "Justin Bieber", avatar: "images/opponent1.png" },
-        { name: "Elon Musk", avatar: "images/opponent2.png" },
-        { name: "Mr. Beast", avatar: "images/opponent3.png" }
+        { name: "Kanye West", avatar: "images/opponent2.png" },
+        { name: "Taylor Swift", avatar: "images/opponent3.png" }
     ];
     return opponents[Math.floor(Math.random() * opponents.length)];
 }
@@ -84,8 +84,9 @@ function resetHands() {
 }
 
 function play(choice) {
-    if (!roundInProgress) return; // Block playing without wager
+    if (!roundInProgress) return;
     stopTimer();
+
     const choices = ["rock", "paper", "scissors"];
     const opponentChoice = choices[Math.floor(Math.random() * 3)];
 
@@ -220,11 +221,10 @@ function fullReset() {
     opponentWins = 0;
     roundInProgress = false;
 
-    // Re-enable wager buttons
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
-// Timer Functions
+// ✅ Timer Functions — bulletproof against auto-win bug
 function resetTimer() {
     stopTimer();
     timerValue = 10;
@@ -260,10 +260,13 @@ function updateTimerDisplay() {
 }
 
 function autoLose() {
+    if (!roundInProgress) return; // SAFETY: prevents auto-win bug
+
     opponentWins++;
     adjustWallet(-wagerAmount);
     updateScoreDisplay();
     showRoundResult();
+    roundInProgress = false;
 }
 
 // Trophy Modal
