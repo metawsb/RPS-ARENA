@@ -1,171 +1,79 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.7), 
-      rgba(0, 0, 0, 0.7)
-    ), 
-    url('images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-/* NAVIGATION */
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background-color: #111;
-  font-size: 18px;
-  position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #111;
+    color: white;
+    font-weight: bold;
 }
 
-.nav-left a, .nav-right a {
-  margin: 0 15px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.nav-left a, .mobile-menu a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
 }
 
-.nav-left a:hover, .nav-right a:hover {
-  color: gold;
+.nav-left a:hover, .mobile-menu a:hover {
+    color: gold;
 }
 
-/* Wallet styling (game page consistency) */
-.wallet-display {
-  margin-right: 15px;
-  font-weight: bold;
-  color: white;
+.nav-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-/* HERO SECTION */
-.hero {
-  padding: 50px 20px;
-}
-
-.hero h1 {
-  font-size: 48px;
-  color: gold;
-  margin-bottom: 10px;
-}
-
-.tagline {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ccc;
-  margin-bottom: 30px;
-}
-
-.icons {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-bottom: 50px;
-}
-
-.symbol {
-  width: 120px;
-  height: 120px;
-  border: 3px solid gold;
-  border-radius: 20px;
-  background-color: #222;
-  padding: 10px;
-  box-shadow: 0 0 15px gold;
-  object-fit: contain;
-}
-
-/* GAME MODES */
-.modes button {
-  margin: 10px;
-  padding: 15px 30px;
-  font-size: 20px;
-  background-color: #222;
-  color: white;
-  border: 2px solid gold;
-  border-radius: 10px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.modes button:hover {
-  background-color: gold;
-  color: black;
-}
-
-/* MOBILE NAVIGATION */
 .mobile-menu-icon {
-  display: none;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
 }
 
 .mobile-menu {
-  display: none;
-  flex-direction: column;
-  align-items: flex-end;
-  background-color: #111;
-  position: absolute;
-  top: 70px;
-  right: 20px;
-  padding: 10px;
-  border: 2px solid gold;
-  border-radius: 8px;
-  z-index: 2000;
+    display: none;
+    flex-direction: column;
+    background-color: #111;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    padding: 10px;
+    border: 2px solid gold;
+    border-radius: 8px;
+    z-index: 2000;
 }
 
 .mobile-menu a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  margin: 5px 0;
-  padding: 5px 10px;
-  width: 100%;
-  text-align: right;
-  font-weight: 700;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 5px 0;
+    font-weight: bold;
 }
 
-.mobile-menu a:hover {
-  color: gold;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .nav-left, .desktop-menu {
+.mobile-wallet {
     display: none;
-  }
-
-  .mobile-menu-icon {
-    display: block;
+    color: white;
+    font-weight: bold;
     position: absolute;
     top: 20px;
-    right: 20px;
-  }
+    left: 20px;
+    background-color: #111;
+    padding: 5px 10px;
+    border: 1px solid gold;
+    border-radius: 5px;
+    z-index: 3000;
+}
 
-  .hero h1 {
-    font-size: 32px;
-  }
+@media (max-width: 768px) {
+    .nav-left, .desktop-menu {
+        display: none;
+    }
 
-  .tagline {
-    font-size: 18px;
-  }
+    .mobile-menu-icon {
+        display: block;
+    }
 
-  .icons {
-    gap: 15px;
-  }
-
-  .symbol {
-    width: 70px;
-    height: 70px;
-  }
-
-  .modes button {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
+    .mobile-wallet {
+        display: block;
+    }
 }
