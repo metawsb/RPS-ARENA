@@ -1,4 +1,103 @@
-/* MOBILE NAVIGATION */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 0.7)
+    ), 
+    url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #111;
+  font-size: 18px;
+  position: relative;
+}
+
+.nav-left a, .nav-right a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-left a:hover, .nav-right a:hover {
+  color: gold;
+}
+
+/* Wallet styling in nav */
+.wallet-display {
+  margin-right: 15px;
+  font-weight: bold;
+  color: white;
+}
+
+.hero {
+  padding: 50px 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.symbol {
+  width: 120px;
+  height: 120px;
+  border: 3px solid gold;
+  border-radius: 20px;
+  background-color: #222;
+  padding: 10px;
+  box-shadow: 0 0 15px gold;
+  object-fit: contain;
+}
+
+.modes button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #222;
+  color: white;
+  border: 2px solid gold;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.modes button:hover:not([disabled]) {
+  background-color: gold;
+  color: black;
+}
+
+.modes button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* -------------------- MOBILE NAVIGATION -------------------- */
 .mobile-menu-icon {
   display: none;
   font-size: 30px;
@@ -16,6 +115,7 @@
   padding: 10px;
   border: 2px solid gold;
   border-radius: 8px;
+  z-index: 2000;
 }
 
 .mobile-menu a {
@@ -28,10 +128,12 @@
   color: gold;
 }
 
+/* -------------------- MOBILE RESPONSIVE -------------------- */
 @media (max-width: 768px) {
   .nav-left, .desktop-menu {
     display: none;
   }
+
   .mobile-menu-icon {
     display: block;
     position: absolute;
@@ -62,6 +164,6 @@
   }
 
   body {
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
   }
 }
