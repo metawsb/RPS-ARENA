@@ -265,3 +265,19 @@ button:hover {
     right: 20px;
   }
 }
+
+/* MOBILE WALLET */
+.mobile-wallet {
+  display: none;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  right: 60px;
+}
+
+@media (max-width: 768px) {
+  .mobile-wallet {
+    display: block;
+  }
+}
