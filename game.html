@@ -1,132 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RPS Arena Ultimate 2025</title>
-  <link rel="stylesheet" href="landing.css">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Arena Ultimate 2025</title>
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- NAVIGATION BAR -->
+<!-- NAVIGATION -->
 <nav>
-  <div class="nav-left">
-    <a href="index.html">HOME</a>
-    <a href="#">LEADERBOARD</a>
-    <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
-  </div>
-  <div class="nav-right desktop-menu">
-    <span class="wallet-display">
-      WALLET: PHP <span id="nav-wallet">10000</span>
-      <span id="nav-gain" style="color: limegreen; font-weight: normal;">(+PHP 0 / 0%)</span>
-    </span>
-    <a href="#">SIGN OUT</a>
-  </div>
+    <div class="nav-left">
+        <a href="index.html">HOME</a>
+        <a href="#">LEADERBOARD</a>
+        <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
+    </div>
+    <div class="nav-right desktop-menu">
+        <span class="wallet-display">
+            WALLET: PHP <span id="nav-wallet">10000</span>
+            <span id="nav-gain" style="color: limegreen; font-weight: normal;">(+PHP 0 / 0%)</span>
+        </span>
+        <a href="#">SIGN OUT</a>
+    </div>
 
-  <!-- MOBILE MENU ICON -->
-  <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+    <!-- MOBILE MENU ICON -->
+    <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
 
-  <!-- MOBILE WALLET -->
-  <div class="mobile-wallet">
-    WALLET: PHP <span id="nav-wallet-mobile">10000</span>
-  </div>
+    <!-- MOBILE WALLET -->
+    <div class="mobile-wallet">
+        WALLET: PHP <span id="nav-wallet-mobile">10000</span>
+    </div>
 
-  <!-- MOBILE MENU -->
-  <div id="mobile-menu" class="mobile-menu">
-    <a href="index.html">HOME</a>
-    <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
-    <a href="#">SIGN OUT</a>
-  </div>
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="mobile-menu">
+        <a href="index.html">HOME</a>
+        <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
+        <a href="#">SIGN OUT</a>
+    </div>
 </nav>
 
 <header>
-  <div class="player-section">
-    <img src="images/warrior.png" class="avatar" alt="Player">
-    <div class="player-name">Player</div>
-    <div class="health-bar">
-      <span id="player-hearts">❤️❤️❤️</span>
-      <span id="player-lost" class="lost-heart"></span>
+    <div class="player-section">
+        <img src="images/player.png" class="avatar" alt="Player">
+        <div class="player-name">Player</div>
+        <div class="health-bar">
+            <span id="player-hearts">❤️❤️❤️</span>
+        </div>
     </div>
-  </div>
-  <div>
-    <div class="vs">VS</div>
-  </div>
-  <div class="opponent-section">
-    <img id="opponent-avatar" src="images/opponent1.png" class="avatar" alt="Opponent">
-    <div id="opponent-name" class="opponent-name">Justin Bieber</div>
-    <div class="health-bar">
-      <span id="opponent-hearts">❤️❤️❤️</span>
-      <span id="opponent-lost" class="lost-heart"></span>
+    <div>
+        <div class="vs">VS</div>
     </div>
-  </div>
+    <div class="opponent-section">
+        <img id="opponent-avatar" src="images/opponent1.png" class="avatar" alt="Opponent">
+        <div id="opponent-name" class="opponent-name">Justin Bieber</div>
+        <div class="health-bar">
+            <span id="opponent-hearts">❤️❤️❤️</span>
+        </div>
+    </div>
 </header>
 
 <main>
-  <div class="wagers" id="wager-selection">
-    <strong>Choose Your Wager:</strong><br>
-    <button onclick="startMatch(100)">PHP 100</button>
-    <button onclick="startMatch(500)">PHP 500</button>
-    <button onclick="startMatch(1000)">PHP 1000</button>
-    <button onclick="startMatch(10000)">PHP 10000</button>
-  </div>
+    <div class="wagers" id="wager-selection">
+        <strong>Choose Your Wager:</strong><br>
+        <button onclick="startMatch(100)">PHP 100</button>
+        <button onclick="startMatch(500)">PHP 500</button>
+        <button onclick="startMatch(1000)">PHP 1000</button>
+        <button onclick="startMatch(10000)">PHP 10000</button>
+    </div>
 
-  <div id="choices" style="display:none;">
-    <button onclick="play('rock')">✊ Rock</button>
-    <button onclick="play('paper')">✋ Paper</button>
-    <button onclick="play('scissors')">✌️ Scissors</button>
-  </div>
+    <div id="choices" style="display:none;">
+        <button onclick="play('rock')">✊ Rock</button>
+        <button onclick="play('paper')">✋ Paper</button>
+        <button onclick="play('scissors')">✌️ Scissors</button>
+    </div>
 
-  <div id="dynamic-timer-area"></div>
+    <div id="dynamic-timer-area"></div>
 
-  <div class="hand-display">
-    <div id="player-hand">❔</div>
-    <div id="opponent-hand">❔</div>
-  </div>
+    <div class="hand-display">
+        <div id="player-hand">❔</div>
+        <div id="opponent-hand">❔</div>
+    </div>
 
-  <div id="balance-change" class="balance-change"></div>
+    <div id="balance-change" class="balance-change"></div>
 
-  <button class="reset-btn" onclick="fullReset()">RESET ALL</button>
+    <button class="reset-btn" onclick="fullReset()">RESET ALL</button>
 </main>
 
 <!-- POPUPS -->
 <div id="result-popup" class="popup" style="display:none;">
-  <div id="result-message"></div>
-  <button onclick="newMatch()">New Match</button>
-  <button onclick="rematch()">Rematch</button>
-  <button onclick="endMatch()">End</button>
+    <div id="result-message"></div>
+    <button onclick="newMatch()">New Match</button>
+    <button onclick="rematch()">Rematch</button>
+    <button onclick="endMatch()">End</button>
 </div>
 
 <div id="balance-warning" class="popup" style="display:none;">
-  <div>You can't bet more than your Wallet balance!</div>
-  <button onclick="closeBalanceWarning()">OK</button>
+    <div>You can't bet more than your Wallet balance!</div>
+    <button onclick="closeBalanceWarning()">OK</button>
 </div>
 
 <div id="trophies-modal" class="popup" style="display:none;">
-  <h2>Your Trophies</h2>
-  <div id="trophies-list" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;"></div>
-  <br>
-  <button onclick="closeTrophiesModal()">CLOSE</button>
+    <h2>Your Trophies</h2>
+    <div id="trophies-list" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;"></div>
+    <br>
+    <button onclick="closeTrophiesModal()">CLOSE</button>
 </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=5"></script>
 
-<!-- MOBILE MENU AND WALLET SYNC SCRIPT -->
 <script>
-  function toggleMobileMenu() {
+function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  }
-
-  function syncMobileWallet() {
-    const navWallet = document.getElementById('nav-wallet');
-    const navWalletMobile = document.getElementById('nav-wallet-mobile');
-    if (navWallet && navWalletMobile) {
-      navWalletMobile.textContent = navWallet.textContent;
-    }
-  }
-
-  setInterval(syncMobileWallet, 1000);
+}
 </script>
 
 </body>
