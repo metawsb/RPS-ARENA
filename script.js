@@ -20,6 +20,11 @@ let opponents = [
 let currentOpponent = 0;
 
 function startMatch(amount) {
+  if (amount > wallet) {
+    showBalanceWarning();
+    return; // stop starting the match if not enough funds
+  }
+
   wager = amount;
   playerLives = 3;
   opponentLives = 3;
@@ -27,6 +32,7 @@ function startMatch(amount) {
   document.getElementById("choices").style.display = "flex";
   updateHealthBars();
   resetHandStyles();
+}
 
   // Always remove any previous timer
   const existingTimer = document.getElementById("timer");
