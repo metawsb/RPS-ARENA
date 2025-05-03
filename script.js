@@ -2,13 +2,14 @@ let wallet = 10000;
 let wager = 0;
 let playerLives = 3;
 let opponentLives = 3;
+let timerInterval;
+let timerValue = 10;
 
 let opponents = [
   { name: "Justin Bieber", avatar: "images/opponent1.png" },
   { name: "Kanye West", avatar: "images/opponent2.png" },
   { name: "Taylor Swift", avatar: "images/opponent3.png" }
 ];
-
 let currentOpponent = 0;
 
 function startMatch(amount) {
@@ -19,9 +20,7 @@ function startMatch(amount) {
   document.getElementById("choices").style.display = "flex";
   updateHealthBars();
   resetHandStyles();
-  document.getElementById("player-hand").textContent = "❔";
-  document.getElementById("opponent-hand").textContent = "❔";
-  document.getElementById("balance-change").textContent = "";
+  resetTimer();
 }
 
 function updateHealthBars() {
@@ -30,7 +29,7 @@ function updateHealthBars() {
 }
 
 function play(playerChoice) {
-  if (playerLives === 0 || opponentLives === 0) return;
+  stopTimer();
 
   const choices = ["rock", "paper", "scissors"];
   const opponentChoice = choices[Math.floor(Math.random() * 3)];
@@ -41,31 +40,30 @@ function play(playerChoice) {
   document.getElementById("player-hand").textContent = emojis[playerChoice];
   document.getElementById("opponent-hand").textContent = emojis[opponentChoice];
 
-  const result = getResult(playerChoice, opponentChoice);
+  let result = getResult(playerChoice, opponentChoice);
 
   if (result === "win") {
-    highlightHands("player");
+    highlightWinner("player");
     animateHeartLoss("opponent");
     setTimeout(() => {
       opponentLives--;
       updateHealthBars();
       checkEndMatch();
-    }, 800);
+    }, 400);
     showRoundResult("WIN", "limegreen");
   } else if (result === "lose") {
-    highlightHands("opponent");
+    highlightWinner("opponent");
     animateHeartLoss("player");
     setTimeout(() => {
       playerLives--;
       updateHealthBars();
       checkEndMatch();
-    }, 800);
+    }, 400);
     showRoundResult("LOSE", "red");
   } else {
-    resetHandStyles();
-    document.getElementById("player-hand").classList.add("tie");
-    document.getElementById("opponent-hand").classList.add("tie");
+    highlightTie();
     showRoundResult("TIE", "yellow");
+    resetTimer();
   }
 }
 
@@ -73,12 +71,11 @@ function animateHeartLoss(who) {
   let el = document.getElementById(who + "-lost");
   el.textContent = "-1❤️";
   el.style.opacity = 1;
-  el.style.animation = "fadeHeart 0.8s forwards";
+  el.style.animation = "fadeHeart 0.4s forwards";
   setTimeout(() => {
     el.textContent = "";
     el.style.opacity = 0;
-    el.style.animation = "";
-  }, 800);
+  }, 400);
 }
 
 function getResult(player, opponent) {
@@ -91,20 +88,26 @@ function getResult(player, opponent) {
   return "lose";
 }
 
-function resetHandStyles() {
-  document.getElementById("player-hand").className = "";
-  document.getElementById("opponent-hand").className = "";
-}
-
-function highlightHands(winner) {
+function highlightWinner(winner) {
   resetHandStyles();
   if (winner === "player") {
     document.getElementById("player-hand").classList.add("winner");
     document.getElementById("opponent-hand").classList.add("loser");
   } else {
-    document.getElementById("player-hand").classList.add("loser");
     document.getElementById("opponent-hand").classList.add("winner");
+    document.getElementById("player-hand").classList.add("loser");
   }
+}
+
+function highlightTie() {
+  resetHandStyles();
+  document.getElementById("player-hand").classList.add("tie");
+  document.getElementById("opponent-hand").classList.add("tie");
+}
+
+function resetHandStyles() {
+  document.getElementById("player-hand").className = "";
+  document.getElementById("opponent-hand").className = "";
 }
 
 function showRoundResult(text, color) {
@@ -114,8 +117,11 @@ function showRoundResult(text, color) {
 }
 
 function checkEndMatch() {
-  if (playerLives === 0 || opponentLives === 0) {
-    setTimeout(showResult, 300);
+  if (playerLives <= 0 || opponentLives <= 0) {
+    stopTimer();
+    setTimeout(showResult, 400);
+  } else {
+    resetTimer();
   }
 }
 
@@ -124,14 +130,14 @@ function showResult() {
   if (playerLives > 0) {
     wallet += wager;
     message = `<span style='color:limegreen;'>Congratulations!</span><br>
-               <span style='font-size:28px; color:limegreen;'>YOU WIN</span><br>
-               <span style='font-size:36px; color:limegreen;'>+PHP ${wager}</span>`;
+               <span style='font-size:28px;'>YOU WIN</span><br>
+               <span style='font-size:36px;'>+PHP ${wager}</span>`;
     addTrophy();
   } else {
     wallet -= wager;
     message = `<span style='color:red;'>Better Luck Next Time</span><br>
-               <span style='font-size:28px; color:red;'>YOU LOSE</span><br>
-               <span style='font-size:36px; color:red;'>-PHP ${wager}</span>`;
+               <span style='font-size:28px;'>YOU LOSE</span><br>
+               <span style='font-size:36px;'>-PHP ${wager}</span>`;
   }
   document.getElementById("wallet").textContent = "PHP " + wallet;
   document.getElementById("result-message").innerHTML = message;
@@ -166,6 +172,7 @@ function resetGame(keepOpponent = false) {
   if (!keepOpponent) {
     document.getElementById("choices").style.display = "flex";
   }
+  resetTimer();
 }
 
 function rotateOpponent() {
@@ -187,6 +194,38 @@ function fullReset() {
   document.getElementById("wager-selection").style.display = "block";
   document.getElementById("choices").style.display = "none";
   resetGame(true);
+}
+
+function resetTimer() {
+  stopTimer();
+  timerValue = 10;
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerValue--;
+    updateTimerDisplay();
+    if (timerValue <= 0) {
+      stopTimer();
+      autoLose();
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+function updateTimerDisplay() {
+  const timer = document.getElementById("timer");
+  timer.textContent = `${timerValue} seconds left`;
+  if (timerValue <= 3) {
+    timer.style.color = "red";
+  } else {
+    timer.style.color = "white";
+  }
+}
+
+function autoLose() {
+  play("none"); // Player fails to pick → auto lose
 }
 
 updateHealthBars();
