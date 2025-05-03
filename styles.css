@@ -66,15 +66,25 @@ header {
 
 .choices button {
   margin: 10px;
-  padding: 15px 35px;
-  font-size: 22px;
+  padding: 12px 30px;
+  font-size: 20px;
   background-color: #333;
   color: white;
   border: 2px solid gold;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   cursor: pointer;
-  text-transform: uppercase; /* THIS makes sure it's always all caps */
+  transition: 0.3s;
 }
+
+.choices button:hover {
+  background-color: gold;
+  color: black;
+}
+
 
 .hand-display {
   display: flex;
