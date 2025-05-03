@@ -127,7 +127,7 @@ button:hover {
   color: yellow;
 }
 
-/* Heart Fade Animation */
+/* Heart animation */
 @keyframes fadeHeart {
   0% { opacity: 1; transform: translateX(0); }
   100% { opacity: 0; transform: translateX(10px); }
@@ -139,7 +139,7 @@ button:hover {
   font-weight: bold;
 }
 
-/* POPUP MODALS */
+/* POPUP */
 .popup {
   position: fixed;
   top: 50%;
@@ -156,7 +156,6 @@ button:hover {
   box-shadow: 0 0 20px gold;
   z-index: 1000;
   max-width: 90vw;
-  word-wrap: break-word;
 }
 
 /* TROPHIES */
@@ -198,7 +197,7 @@ button:hover {
   padding: 5px 10px;
   width: 100%;
   text-align: right;
-  font-weight: 700; /* Guaranteed bold */
+  font-weight: 700;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -253,3 +252,16 @@ button:hover {
   .popup {
     padding: 20px;
     font-size: 18px;
+  }
+
+  .nav-left, .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
