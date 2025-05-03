@@ -1,98 +1,111 @@
-
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.7), 
-      rgba(0, 0, 0, 0.7)
-    ), 
-    url('images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0a0a0a;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background-color: #111;
-  font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #111;
+    color: white;
+    font-weight: bold;
 }
 
-.nav-left a, .nav-right a {
-  margin: 0 15px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.nav-left a, .mobile-menu a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
 }
 
-.nav-left a:hover, .nav-right a:hover {
-  color: gold;
+.nav-left a:hover, .mobile-menu a:hover {
+    color: gold;
 }
 
-/* Wallet styling in nav */
-.wallet-display {
-  margin-right: 15px;
-  font-weight: bold;
-  color: white;
+.nav-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-.hero {
-  padding: 50px 20px;
+.mobile-menu-icon {
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
 }
 
-.hero h1 {
-  font-size: 48px;
-  color: gold;
-  margin-bottom: 10px;
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #111;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    padding: 10px;
+    border: 2px solid gold;
+    border-radius: 8px;
+    z-index: 2000;
 }
 
-.tagline {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ccc;
-  margin-bottom: 30px;
+.mobile-menu a {
+    margin: 5px 0;
+    font-weight: bold;
 }
 
-.icons {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-bottom: 50px;
+.main-heading {
+    font-size: 36px;
+    margin-top: 50px;
+    color: gold;
 }
 
-.symbol {
-  width: 120px;
-  height: 120px;
-  border: 3px solid gold;
-  border-radius: 20px;
-  background-color: #222;
-  padding: 10px;
-  box-shadow: 0 0 15px gold;
-  object-fit: contain;
+.subheading {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 30px;
 }
 
-.modes button {
-  margin: 10px;
-  padding: 15px 30px;
-  font-size: 20px;
-  background-color: #222;
-  color: white;
-  border: 2px solid gold;
-  border-radius: 10px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: bold;
+img {
+    width: 60%;
+    max-width: 400px;
 }
 
-.modes button:hover:not([disabled]) {
-  background-color: gold;
-  color: black;
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #222;
+    color: white;
+    border: 2px solid gold;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
 }
 
-.modes button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+button:hover {
+    background-color: gold;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .nav-left, .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .main-heading {
+        font-size: 28px;
+    }
+
+    img {
+        width: 90%;
+    }
 }
