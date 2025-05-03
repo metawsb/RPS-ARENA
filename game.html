@@ -16,11 +16,17 @@
     <a href="#">LEADERBOARD</a>
     <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
   </div>
-  <div class="nav-right">
+  <div class="nav-right desktop-menu">
     <span class="wallet-display">
       WALLET: PHP <span id="nav-wallet">10000</span>
       <span id="nav-gain" style="color: limegreen; font-weight: normal;">(+PHP 0 / 0%)</span>
     </span>
+    <a href="#">SIGN OUT</a>
+  </div>
+  <div class="mobile-menu-icon" onclick="toggleMobileMenu()">☰</div>
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="index.html">HOME</a>
+    <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
     <a href="#">SIGN OUT</a>
   </div>
 </nav>
@@ -97,5 +103,11 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
 </body>
 </html>
