@@ -40,7 +40,14 @@ header {
   margin-top: 10px;
   margin-bottom: 20px;
   font-weight: bold;
-  display: inline-block; /* ADD THIS */
+  display: inline-block;
+}
+
+.wallet-wrapper {
+  text-align: center;
+  width: 100%;
+}
+
 }
 
 .health-bar {
