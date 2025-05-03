@@ -12,7 +12,8 @@
   <div class="player-section">
     <img src="images/warrior.png" class="avatar" alt="Player">
     <div class="player-name">Player</div>
-    <div class="health-bar" id="player-health">
+    <div class="health-bar">
+      <span id="player-hearts">❤️❤️❤️</span>
       <span id="player-lost" class="lost-heart"></span>
     </div>
   </div>
@@ -20,7 +21,8 @@
   <div class="opponent-section">
     <img id="opponent-avatar" src="images/opponent1.png" class="avatar" alt="Opponent">
     <div id="opponent-name" class="opponent-name">Justin Bieber</div>
-    <div class="health-bar" id="opponent-health">
+    <div class="health-bar">
+      <span id="opponent-hearts">❤️❤️❤️</span>
       <span id="opponent-lost" class="lost-heart"></span>
     </div>
   </div>
@@ -30,6 +32,7 @@
   <div class="wallet-box">
     Wallet: <span id="wallet">PHP 10000</span>
   </div>
+</div>
 
 <main>
   <div class="wagers" id="wager-selection">
@@ -40,11 +43,11 @@
     <button onclick="startMatch(10000)">PHP 10000</button>
   </div>
 
- <div class="choices" id="choices" style="display:none;">
-  <button onclick="play('rock')">✊ Rock</button>
-  <button onclick="play('paper')">✋ Paper</button>
-  <button onclick="play('scissors')">✌️ Scissors</button>
-</div>
+  <div id="choices" style="display:none;">
+    <button onclick="play('rock')">✊ Rock</button>
+    <button onclick="play('paper')">✋ Paper</button>
+    <button onclick="play('scissors')">✌️ Scissors</button>
+  </div>
 
   <div class="hand-display">
     <div id="player-hand">❔</div>
