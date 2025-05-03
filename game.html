@@ -4,9 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RPS Arena Ultimate 2025</title>
+  <link rel="stylesheet" href="landing.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<!-- NAVIGATION BAR -->
+<nav>
+  <div class="nav-left">
+    <a href="index.html">HOME</a>
+    <a href="#">LEADERBOARD</a>
+  </div>
+  <div class="nav-right">
+    <a href="#">LOGIN</a>
+    <a href="#">SIGN UP</a>
+  </div>
+</nav>
 
 <header>
   <div class="player-section">
@@ -19,7 +32,6 @@
   </div>
   <div>
     <div class="vs">VS</div>
-    <!-- No timer-placeholder here anymore -->
   </div>
   <div class="opponent-section">
     <img id="opponent-avatar" src="images/opponent1.png" class="avatar" alt="Opponent">
@@ -52,7 +64,6 @@
     <button onclick="play('scissors')">✌️ Scissors</button>
   </div>
 
-  <!-- Timer will be created here instead -->
   <div id="dynamic-timer-area"></div>
 
   <div class="hand-display">
@@ -70,6 +81,7 @@
   <button class="reset-btn" onclick="fullReset()">RESET ALL</button>
 </main>
 
+<!-- Result pop-up -->
 <div id="result-popup" class="popup" style="display:none;">
   <div id="result-message"></div>
   <button onclick="newMatch()">New Match</button>
@@ -77,17 +89,12 @@
   <button onclick="endMatch()">End</button>
 </div>
 
+<!-- Not enough balance pop-up -->
+<div id="balance-warning" class="popup" style="display:none;">
+  <div>You can't bet more than your Wallet balance!</div>
+  <button onclick="closeBalanceWarning()">OK</button>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
-
-<div id="balance-warning" class="popup" style="display:none;">
-  <div>You can't bet more than your Wallet balance!</div>
-  <button onclick="closeBalanceWarning()">OK</button>
-</div>
-
-<div id="balance-warning" class="popup" style="display:none;">
-  <div>You can't bet more than your Wallet balance!</div>
-  <button onclick="closeBalanceWarning()">OK</button>
-</div>
-
