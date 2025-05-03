@@ -290,3 +290,11 @@ function autoLose() {
 }
 
 updateHealthBars();
+
+function showBalanceWarning() {
+  document.getElementById("balance-warning").style.display = "block";
+}
+
+function closeBalanceWarning() {
+  document.getElementById("balance-warning").style.display = "none";
+}
