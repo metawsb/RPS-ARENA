@@ -126,6 +126,7 @@ nav {
   padding: 5px 10px;
   width: 100%;
   text-align: right;
+  font-weight: bold;  /* MAKE THE WORDS BOLD */
 }
 
 .mobile-menu a:hover {
