@@ -1,6 +1,5 @@
 let wallet = 10000;
 let wager = 0;
-
 let playerLives = 3;
 let opponentLives = 3;
 
@@ -26,31 +25,43 @@ function startMatch(amount) {
 }
 
 function updateHealthBars() {
-  document.getElementById("player-health").innerHTML = "❤️".repeat(playerLives);
-  document.getElementById("opponent-health").innerHTML = "❤️".repeat(opponentLives);
+  document.getElementById("player-health").innerHTML = "❤️".repeat(playerLives) + 
+    '<span id="player-lost" class="lost-heart"></span>';
+  document.getElementById("opponent-health").innerHTML = "❤️".repeat(opponentLives) + 
+    '<span id="opponent-lost" class="lost-heart"></span>';
 }
 
 function play(playerChoice) {
   if (playerLives === 0 || opponentLives === 0) return;
 
-  let choices = ["rock", "paper", "scissors"];
-  let opponentChoice = choices[Math.floor(Math.random() * 3)];
-  let emojis = { rock: "✊", paper: "✋", scissors: "✌️" };
+  const choices = ["rock", "paper", "scissors"];
+  const opponentChoice = choices[Math.floor(Math.random() * 3)];
+  const emojis = { rock: "✊", paper: "✋", scissors: "✌️" };
 
   resetHandStyles();
 
   document.getElementById("player-hand").textContent = emojis[playerChoice];
   document.getElementById("opponent-hand").textContent = emojis[opponentChoice];
 
-  let result = getResult(playerChoice, opponentChoice);
+  const result = getResult(playerChoice, opponentChoice);
 
   if (result === "win") {
     highlightHands("player");
-    opponentLives--;
+    animateHeartLoss("opponent");
+    setTimeout(() => {
+      opponentLives--;
+      updateHealthBars();
+      checkEndMatch();
+    }, 800);
     showRoundResult("WIN", "limegreen");
   } else if (result === "lose") {
     highlightHands("opponent");
-    playerLives--;
+    animateHeartLoss("player");
+    setTimeout(() => {
+      playerLives--;
+      updateHealthBars();
+      checkEndMatch();
+    }, 800);
     showRoundResult("LOSE", "red");
   } else {
     resetHandStyles();
@@ -58,12 +69,13 @@ function play(playerChoice) {
     document.getElementById("opponent-hand").classList.add("tie");
     showRoundResult("TIE", "yellow");
   }
+}
 
-  updateHealthBars();
-
-  if (playerLives === 0 || opponentLives === 0) {
-    setTimeout(showResult, 500);
-  }
+function animateHeartLoss(who) {
+  let el = document.getElementById(who + "-lost");
+  el.textContent = "-1❤️";
+  el.style.opacity = 1;
+  el.style.animation = "fadeHeart 0.8s forwards";
 }
 
 function getResult(player, opponent) {
@@ -95,6 +107,12 @@ function showRoundResult(text, color) {
   const balanceChange = document.getElementById("balance-change");
   balanceChange.textContent = text;
   balanceChange.style.color = color;
+}
+
+function checkEndMatch() {
+  if (playerLives === 0 || opponentLives === 0) {
+    setTimeout(showResult, 300);
+  }
 }
 
 function showResult() {
