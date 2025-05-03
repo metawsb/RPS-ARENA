@@ -37,10 +37,19 @@ function play(playerChoice) {
 
   resetHandStyles();
 
-  document.getElementById("player-hand").textContent = emojis[playerChoice];
+  if (playerChoice !== "none") {
+    document.getElementById("player-hand").textContent = emojis[playerChoice];
+  } else {
+    document.getElementById("player-hand").textContent = "❔";
+  }
   document.getElementById("opponent-hand").textContent = emojis[opponentChoice];
 
-  let result = getResult(playerChoice, opponentChoice);
+  let result;
+  if (playerChoice === "none") {
+    result = "lose";
+  } else {
+    result = getResult(playerChoice, opponentChoice);
+  }
 
   if (result === "win") {
     highlightWinner("player");
@@ -59,7 +68,11 @@ function play(playerChoice) {
       updateHealthBars();
       checkEndMatch();
     }, 400);
-    showRoundResult("LOSE", "red");
+    if (playerChoice === "none") {
+      showRoundResult("TIMEOUT! LOSE", "red");
+    } else {
+      showRoundResult("LOSE", "red");
+    }
   } else {
     highlightTie();
     showRoundResult("TIE", "yellow");
@@ -75,6 +88,7 @@ function animateHeartLoss(who) {
   setTimeout(() => {
     el.textContent = "";
     el.style.opacity = 0;
+    el.style.animation = "";
   }, 400);
 }
 
@@ -225,7 +239,7 @@ function updateTimerDisplay() {
 }
 
 function autoLose() {
-  play("none"); // Player fails to pick → auto lose
+  play("none");
 }
 
 updateHealthBars();
