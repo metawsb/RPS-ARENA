@@ -9,8 +9,8 @@ let timerInterval = null;
 let playerWins = 0;
 let opponentWins = 0;
 let roundInProgress = false;
+let roundLocked = false;  // NEW: prevents scoring twice per round
 
-// Update wallet UI
 function updateWalletDisplay() {
     document.getElementById("nav-wallet").textContent = wallet;
     document.getElementById("nav-wallet-mobile").textContent = wallet;
@@ -25,17 +25,14 @@ function updateWalletDisplay() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
+    stopTimer();
     updateWalletDisplay();
 });
 
-// Start match — double-click safe
 function startMatch(amount) {
     if (roundInProgress) return;
     roundInProgress = true;
+    roundLocked = false;
 
     stopTimer();
 
@@ -44,9 +41,9 @@ function startMatch(amount) {
         roundInProgress = false;
         return;
     }
+
     wagerAmount = amount;
 
-    // Disable wager buttons
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = true);
 
     currentOpponent = generateOpponent();
@@ -55,6 +52,7 @@ function startMatch(amount) {
 
     document.getElementById("wager-selection").style.display = "none";
     document.getElementById("choices").style.display = "block";
+
     resetHearts();
     resetHands();
     playerWins = 0;
@@ -63,7 +61,6 @@ function startMatch(amount) {
     resetTimer();
 }
 
-// ✅ UPDATED OPPONENTS LIST
 function generateOpponent() {
     const opponents = [
         { name: "Justin Bieber", avatar: "images/opponent1.png" },
@@ -81,10 +78,13 @@ function resetHearts() {
 function resetHands() {
     document.getElementById("player-hand").textContent = "❔";
     document.getElementById("opponent-hand").textContent = "❔";
+    document.getElementById("player-hand").className = "";
+    document.getElementById("opponent-hand").className = "";
 }
 
 function play(choice) {
-    if (!roundInProgress) return;
+    if (!roundInProgress || roundLocked) return;
+
     stopTimer();
 
     const choices = ["rock", "paper", "scissors"];
@@ -103,6 +103,9 @@ function getSymbol(choice) {
 }
 
 function determineWinner(player, opponent) {
+    if (roundLocked) return;
+    roundLocked = true; // Prevent scoring twice
+
     if (player === opponent) {
         highlightTie();
     } else if (
@@ -132,7 +135,7 @@ function updateScoreDisplay() {
 function highlightWinner(winnerId, loserId) {
     document.getElementById(winnerId).classList.add("winner");
     document.getElementById(loserId).classList.add("loser");
-    setTimeout(() => showRoundResult(), 2000);
+    setTimeout(() => showRoundResult(false), 2000);
 }
 
 function highlightTie() {
@@ -141,9 +144,10 @@ function highlightTie() {
     setTimeout(() => showRoundResult(true), 2000);
 }
 
-function showRoundResult(isTie = false) {
+function showRoundResult(isTie) {
     document.getElementById("result-popup").style.display = "block";
     let resultMsg = "";
+
     if (isTie) {
         resultMsg = "It's a Tie!";
     } else if (playerWins >= 3) {
@@ -151,19 +155,24 @@ function showRoundResult(isTie = false) {
     } else if (opponentWins >= 3) {
         resultMsg = "You Lose the Match!";
     } else {
-        resultMsg = document.getElementById("player-hand").classList.contains("winner") ? "You Win the Round!" : "You Lose the Round!";
+        resultMsg = document.getElementById("player-hand").classList.contains("winner")
+            ? "You Win the Round!"
+            : "You Lose the Round!";
     }
+
     document.getElementById("result-message").textContent = resultMsg;
     roundInProgress = false;
 }
 
 function adjustWallet(amount) {
-    wallet += amount;
-    totalGain += amount;
-    updateWalletDisplay();
-    const changeDisplay = document.getElementById("balance-change");
-    changeDisplay.style.color = amount >= 0 ? "limegreen" : "red";
-    changeDisplay.textContent = `${amount >= 0 ? "+" : ""}PHP ${amount}`;
+    if (roundLocked) {  // Double-check no duplicate wallet changes
+        wallet += amount;
+        totalGain += amount;
+        updateWalletDisplay();
+        const changeDisplay = document.getElementById("balance-change");
+        changeDisplay.style.color = amount >= 0 ? "limegreen" : "red";
+        changeDisplay.textContent = `${amount >= 0 ? "+" : ""}PHP ${amount}`;
+    }
 }
 
 function newMatch() {
@@ -176,16 +185,18 @@ function newMatch() {
     playerWins = 0;
     opponentWins = 0;
     roundInProgress = false;
+    roundLocked = false;
 
-    // Re-enable wager buttons
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
 function rematch() {
     if (playerWins >= 3 || opponentWins >= 3) return newMatch();
+
     resetHands();
     document.getElementById("result-popup").style.display = "none";
     roundInProgress = true;
+    roundLocked = false;
     resetTimer();
 }
 
@@ -198,8 +209,8 @@ function endMatch() {
     playerWins = 0;
     opponentWins = 0;
     roundInProgress = false;
+    roundLocked = false;
 
-    // Re-enable wager buttons
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
@@ -220,11 +231,12 @@ function fullReset() {
     playerWins = 0;
     opponentWins = 0;
     roundInProgress = false;
+    roundLocked = false;
 
     document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
-// ✅ Timer Functions — bulletproof against auto-win bug
+// Timer Functions
 function resetTimer() {
     stopTimer();
     timerValue = 10;
@@ -260,13 +272,13 @@ function updateTimerDisplay() {
 }
 
 function autoLose() {
-    if (!roundInProgress) return; // SAFETY: prevents auto-win bug
+    if (!roundInProgress || roundLocked) return;
 
+    roundLocked = true;
     opponentWins++;
     adjustWallet(-wagerAmount);
     updateScoreDisplay();
-    showRoundResult();
-    roundInProgress = false;
+    showRoundResult(false);
 }
 
 // Trophy Modal
