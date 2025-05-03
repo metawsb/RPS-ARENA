@@ -127,7 +127,7 @@ button:hover {
   color: yellow;
 }
 
-/* Heart animation */
+/* Heart Fade Animation */
 @keyframes fadeHeart {
   0% { opacity: 1; transform: translateX(0); }
   100% { opacity: 0; transform: translateX(10px); }
@@ -139,7 +139,7 @@ button:hover {
   font-weight: bold;
 }
 
-/* POPUP */
+/* POPUP MODALS */
 .popup {
   position: fixed;
   top: 50%;
@@ -205,6 +205,22 @@ button:hover {
   color: gold;
 }
 
+/* MOBILE WALLET — UPPER LEFT */
+.mobile-wallet {
+  display: none;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;
+  left: 20px;  /* moved to left side */
+  font-size: 16px;
+  background-color: #111;
+  padding: 5px 10px;
+  border: 1px solid gold;
+  border-radius: 5px;
+  z-index: 3000;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
 
@@ -264,29 +280,8 @@ button:hover {
     top: 20px;
     right: 20px;
   }
-}
 
-/* MOBILE WALLET */
-.mobile-wallet {
-  display: none;
-  color: white;
-  font-weight: bold;
-  position: absolute;
-  top: 20px;
-  right: 60px;
-  font-size: 16px;
-  background-color: #111;
-  padding: 5px 10px;
-  border: 1px solid gold;
-  border-radius: 5px;
-  z-index: 3000;
-}
-
-@media (max-width: 768px) {
   .mobile-wallet {
     display: block;
   }
-}
-
-  
 }
