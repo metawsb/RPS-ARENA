@@ -1,4 +1,4 @@
-// Always remove old timer when page loads (for iPhone Safari caching issues)
+// Clear any old timer when the page loads (for iPhone/Safari issues)
 document.addEventListener("DOMContentLoaded", function() {
     const existingTimer = document.getElementById("timer");
     if (existingTimer) existingTimer.remove();
@@ -28,15 +28,15 @@ function startMatch(amount) {
   updateHealthBars();
   resetHandStyles();
 
-  // Always remove any previous timer (handles desktop + mobile)
+  // Always remove any previous timer
   const existingTimer = document.getElementById("timer");
   if (existingTimer) existingTimer.remove();
 
-  // Create a brand-new timer
+  // Create a brand-new timer inside dynamic-timer-area
   let timerDiv = document.createElement("div");
   timerDiv.id = "timer";
   timerDiv.className = "timer";
-  document.getElementById("timer-placeholder").appendChild(timerDiv);
+  document.getElementById("dynamic-timer-area").appendChild(timerDiv);
 
   resetTimer();
 }
@@ -214,7 +214,6 @@ function resetGame(keepOpponent = false) {
   updateHealthBars();
   document.getElementById("result-popup").style.display = "none";
 
-  // Remove old timer if exists
   const existingTimer = document.getElementById("timer");
   if (existingTimer) existingTimer.remove();
 
