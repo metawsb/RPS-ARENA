@@ -11,6 +11,7 @@ header {
   justify-content: space-around;
   align-items: center;
   padding: 20px;
+  flex-wrap: wrap;
 }
 
 .avatar {
@@ -155,14 +156,6 @@ button:hover {
   word-wrap: break-word;
 }
 
-@media (max-width: 768px) {
-  .popup {
-    padding: 20px;
-    font-size: 18px;
-  }
-}
-
-
 .trophies img {
   width: 70px;
   height: 70px;
@@ -171,35 +164,92 @@ button:hover {
   margin: 5px;
 }
 
+/* -------------------- MOBILE NAVIGATION -------------------- */
+.mobile-menu-icon {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #111;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  padding: 10px;
+  border: 2px solid gold;
+  border-radius: 8px;
+  z-index: 2000;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.mobile-menu a:hover {
+  color: gold;
+}
+
+/* -------------------- MOBILE RESPONSIVE -------------------- */
 @media (max-width: 768px) {
+
   header {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .avatar {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .vs {
+    font-size: 32px;
+  }
+
+  .player-name, .opponent-name {
+    font-size: 18px;
+  }
+
+  .wagers button, #choices button {
+    font-size: 16px;
+    padding: 8px 16px;
   }
 
   .hand-display {
-    font-size: 40px;
+    font-size: 50px;
   }
 
-  .winner {
-    font-size: 100px !important;
+  .balance-change {
+    font-size: 20px;
   }
 
-  .loser {
-    font-size: 60px !important;
+  .nav-left, .desktop-menu {
+    display: none;
   }
 
-  #choices button {
-    font-size: 16px;
-    padding: 8px 12px;
+  .mobile-menu-icon {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .popup {
+    padding: 20px;
+    font-size: 18px;
   }
 
   .trophies img {
     width: 40px;
     height: 40px;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 }
