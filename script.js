@@ -1,4 +1,3 @@
-// Clear old timer on load
 document.addEventListener("DOMContentLoaded", function() {
   const existingTimer = document.getElementById("timer");
   if (existingTimer) existingTimer.remove();
@@ -11,6 +10,7 @@ let opponentLives = 3;
 let timerInterval;
 let timerValue = 10;
 let totalGain = 0;
+let defeatedOpponents = []; // NEW: Track defeated opponents
 
 let opponents = [
   { name: "Justin Bieber", avatar: "images/opponent1.png" },
@@ -152,6 +152,7 @@ function showResult() {
     message = `<span style='font-size:28px;'>CONGRATULATIONS</span><br>
                <span>YOU'VE WON</span><br>
                <span style='color:limegreen; font-size:36px; font-weight:bold;'>+PHP ${wager}</span>`;
+    addTrophy(opponents[currentOpponent]); // NEW: Add trophy if new opponent defeated
   } else if (playerLives <= 0) {
     wallet -= wager;
     wallet = Math.max(wallet, 0);
@@ -179,6 +180,31 @@ function showResult() {
 
   document.getElementById("result-message").innerHTML = message;
   document.getElementById("result-popup").style.display = "block";
+}
+
+function addTrophy(opponent) {
+  // Only add if not already defeated
+  if (!defeatedOpponents.some(o => o.name === opponent.name)) {
+    defeatedOpponents.push(opponent);
+
+    const trophiesList = document.getElementById("trophies-list");
+    let trophy = document.createElement("div");
+    trophy.style.textAlign = "center";
+
+    let img = document.createElement("img");
+    img.src = opponent.avatar;
+    img.style.width = "80px";
+    img.style.height = "80px";
+    img.style.borderRadius = "10px";
+
+    let label = document.createElement("div");
+    label.textContent = opponent.name;
+    label.style.marginTop = "5px";
+
+    trophy.appendChild(img);
+    trophy.appendChild(label);
+    trophiesList.appendChild(trophy);
+  }
 }
 
 function newMatch() {
@@ -224,6 +250,8 @@ function rotateOpponent() {
 function fullReset() {
   wallet = 10000;
   totalGain = 0;
+  defeatedOpponents = [];
+
   const navWallet = document.getElementById("nav-wallet");
   const navGain = document.getElementById("nav-gain");
   if (navWallet) navWallet.textContent = wallet;
@@ -237,6 +265,8 @@ function fullReset() {
 
   const existingTimer = document.getElementById("timer");
   if (existingTimer) existingTimer.remove();
+
+  document.getElementById("trophies-list").innerHTML = ""; // Clear trophies
 
   resetGame(true);
 }
@@ -278,6 +308,15 @@ function showBalanceWarning() {
 
 function closeBalanceWarning() {
   document.getElementById("balance-warning").style.display = "none";
+}
+
+// Modal controls
+function openTrophiesModal() {
+  document.getElementById("trophies-modal").style.display = "block";
+}
+
+function closeTrophiesModal() {
+  document.getElementById("trophies-modal").style.display = "none";
 }
 
 updateHealthBars();
