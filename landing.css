@@ -1,11 +1,16 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/background.jpg') no-repeat center center fixed;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url('images/background.jpg') no-repeat center center fixed;
   background-size: cover;
   color: white;
   text-align: center;
 }
+
 
 nav {
   display: flex;
