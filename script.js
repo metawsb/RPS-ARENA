@@ -65,12 +65,7 @@ function play(playerChoice) {
   }
   document.getElementById("opponent-hand").textContent = emojis[opponentChoice];
 
-  let result;
-  if (playerChoice === "none") {
-    result = "lose";
-  } else {
-    result = getResult(playerChoice, opponentChoice);
-  }
+  let result = playerChoice === "none" ? "lose" : getResult(playerChoice, opponentChoice);
 
   if (result === "win") {
     highlightWinner("player");
@@ -89,11 +84,7 @@ function play(playerChoice) {
       updateHealthBars();
       checkEndMatch();
     }, 400);
-    if (playerChoice === "none") {
-      showRoundResult("TIMEOUT! LOSE", "red");
-    } else {
-      showRoundResult("LOSE", "red");
-    }
+    showRoundResult(playerChoice === "none" ? "TIMEOUT! LOSE" : "LOSE", "red");
   } else {
     highlightTie();
     showRoundResult("TIE", "yellow");
@@ -115,23 +106,15 @@ function animateHeartLoss(who) {
 
 function getResult(player, opponent) {
   if (player === opponent) return "tie";
-  if (
-    (player === "rock" && opponent === "scissors") ||
-    (player === "paper" && opponent === "rock") ||
-    (player === "scissors" && opponent === "paper")
-  ) return "win";
-  return "lose";
+  return (player === "rock" && opponent === "scissors") ||
+         (player === "paper" && opponent === "rock") ||
+         (player === "scissors" && opponent === "paper") ? "win" : "lose";
 }
 
 function highlightWinner(winner) {
   resetHandStyles();
-  if (winner === "player") {
-    document.getElementById("player-hand").classList.add("winner");
-    document.getElementById("opponent-hand").classList.add("loser");
-  } else {
-    document.getElementById("opponent-hand").classList.add("winner");
-    document.getElementById("player-hand").classList.add("loser");
-  }
+  document.getElementById(`${winner}-hand`).classList.add("winner");
+  document.getElementById(winner === "player" ? "opponent-hand" : "player-hand").classList.add("loser");
 }
 
 function highlightTie() {
@@ -169,21 +152,17 @@ function showResult() {
     message = `<span style='font-size:28px;'>CONGRATULATIONS</span><br>
                <span>YOU'VE WON</span><br>
                <span style='color:limegreen; font-size:36px; font-weight:bold;'>+PHP ${wager}</span>`;
-    addTrophy();
   } else if (playerLives <= 0) {
     wallet -= wager;
-    if (wallet < 0) wallet = 0;
+    wallet = Math.max(wallet, 0);
     totalGain -= wager;
     message = `<span style='font-size:22px;'>BETTER LUCK NEXT TIME</span><br>
-               <span style='font-size:22px;'>YOU'VE LOST</span><br>
                <span style='color:red; font-size:36px; font-weight:bold;'>-PHP ${wager}</span>`;
   } else {
-    // Tie or still ongoing (should not happen but safeguard)
     resetTimer();
     return;
   }
 
-  // Update NAV bar wallet and gain
   const navWallet = document.getElementById("nav-wallet");
   const navGain = document.getElementById("nav-gain");
   if (navWallet) navWallet.textContent = wallet;
@@ -195,7 +174,7 @@ function showResult() {
 
   if (navGain) {
     navGain.textContent = `(${gainText})`;
-    navGain.style.color = totalGain >= 0 ? "white" : "red";
+    navGain.style.color = totalGain >= 0 ? "limegreen" : "red";
   }
 
   document.getElementById("result-message").innerHTML = message;
@@ -242,20 +221,17 @@ function rotateOpponent() {
   document.getElementById("opponent-avatar").src = opponents[currentOpponent].avatar;
 }
 
-function addTrophy() {
-  let img = document.createElement("img");
-  img.src = opponents[currentOpponent].avatar;
-  document.getElementById("trophy-case").appendChild(img);
-}
-
 function fullReset() {
   wallet = 10000;
   totalGain = 0;
   const navWallet = document.getElementById("nav-wallet");
   const navGain = document.getElementById("nav-gain");
   if (navWallet) navWallet.textContent = wallet;
-  if (navGain) navGain.textContent = "(+PHP 0 / 0%)";
-  document.getElementById("trophy-case").innerHTML = "";
+  if (navGain) {
+    navGain.textContent = "(+PHP 0 / 0%)";
+    navGain.style.color = "limegreen";
+  }
+
   document.getElementById("wager-selection").style.display = "block";
   document.getElementById("choices").style.display = "none";
 
@@ -289,11 +265,7 @@ function updateTimerDisplay() {
 
   timer.textContent = `${timerValue} seconds left`;
   timer.style.fontWeight = "bold";
-  if (timerValue <= 3) {
-    timer.style.color = "red";
-  } else {
-    timer.style.color = "white";
-  }
+  timer.style.color = timerValue <= 3 ? "red" : "white";
 }
 
 function autoLose() {
