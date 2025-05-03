@@ -1,4 +1,4 @@
-// Clear any old timer when the page loads (for iPhone/Safari issues)
+// Clear old timer on load
 document.addEventListener("DOMContentLoaded", function() {
   const existingTimer = document.getElementById("timer");
   if (existingTimer) existingTimer.remove();
@@ -22,7 +22,7 @@ let currentOpponent = 0;
 function startMatch(amount) {
   if (amount > wallet) {
     showBalanceWarning();
-    return; // stop starting the match if not enough funds
+    return;
   }
 
   wager = amount;
@@ -162,36 +162,40 @@ function checkEndMatch() {
 
 function showResult() {
   let message = "";
-  let percentChange = 0;
 
-  if (playerLives > 0) {
+  if (playerLives > 0 && opponentLives <= 0) {
     wallet += wager;
     totalGain += wager;
-    percentChange = ((totalGain / 10000) * 100).toFixed(1);
     message = `<span style='font-size:28px;'>CONGRATULATIONS</span><br>
                <span>YOU'VE WON</span><br>
                <span style='color:limegreen; font-size:36px; font-weight:bold;'>+PHP ${wager}</span>`;
     addTrophy();
-  } else {
+  } else if (playerLives <= 0) {
     wallet -= wager;
-    if (wallet < 0) wallet = 0;  // Prevent negative balance
+    if (wallet < 0) wallet = 0;
     totalGain -= wager;
-    percentChange = ((totalGain / 10000) * 100).toFixed(1);
     message = `<span style='font-size:22px;'>BETTER LUCK NEXT TIME</span><br>
                <span style='font-size:22px;'>YOU'VE LOST</span><br>
                <span style='color:red; font-size:36px; font-weight:bold;'>-PHP ${wager}</span>`;
+  } else {
+    // Tie or still ongoing (should not happen but safeguard)
+    resetTimer();
+    return;
   }
 
-  const gainText = totalGain >= 0
-    ? `<span style="color:limegreen;">(+${totalGain} / ${percentChange}%)</span>`
-    : `<span style="color:red;">(${totalGain} / ${percentChange}%)</span>`;
-
-  document.querySelector(".wallet-box").innerHTML = `WALLET: PHP ${wallet} ${gainText}`;
-
-  // 🔥 Update nav bar wallet too
+  // Update NAV bar wallet and gain
   const navWallet = document.getElementById("nav-wallet");
-  if (navWallet) {
-    navWallet.textContent = wallet;
+  const navGain = document.getElementById("nav-gain");
+  if (navWallet) navWallet.textContent = wallet;
+
+  let percentChange = ((totalGain / 10000) * 100).toFixed(1);
+  let gainText = totalGain >= 0 
+    ? `+PHP ${totalGain} / ${percentChange}%`
+    : `-PHP ${Math.abs(totalGain)} / ${percentChange}%`;
+
+  if (navGain) {
+    navGain.textContent = `(${gainText})`;
+    navGain.style.color = totalGain >= 0 ? "white" : "red";
   }
 
   document.getElementById("result-message").innerHTML = message;
@@ -247,11 +251,10 @@ function addTrophy() {
 function fullReset() {
   wallet = 10000;
   totalGain = 0;
-  document.querySelector(".wallet-box").innerHTML = "WALLET: PHP 10000";
   const navWallet = document.getElementById("nav-wallet");
-  if (navWallet) {
-    navWallet.textContent = wallet;
-  }
+  const navGain = document.getElementById("nav-gain");
+  if (navWallet) navWallet.textContent = wallet;
+  if (navGain) navGain.textContent = "(+PHP 0 / 0%)";
   document.getElementById("trophy-case").innerHTML = "";
   document.getElementById("wager-selection").style.display = "block";
   document.getElementById("choices").style.display = "none";
@@ -297,10 +300,6 @@ function autoLose() {
   play("none");
 }
 
-updateHealthBars();
-
-// ✅ Pop-up functions for balance warning
-
 function showBalanceWarning() {
   document.getElementById("balance-warning").style.display = "block";
 }
@@ -308,3 +307,5 @@ function showBalanceWarning() {
 function closeBalanceWarning() {
   document.getElementById("balance-warning").style.display = "none";
 }
+
+updateHealthBars();
