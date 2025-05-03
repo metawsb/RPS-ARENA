@@ -35,10 +35,12 @@ nav {
   margin-bottom: 10px;
 }
 
+/* ✅ Tagline styling */
 .tagline {
   font-size: 24px;
   font-weight: bold;
   color: #ccc;
+  margin-bottom: 30px;
 }
 
 .icons {
