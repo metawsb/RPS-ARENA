@@ -1,88 +1,97 @@
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #0a0a0a;
-    color: white;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 0.7)
+    ), 
+    url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #111;
-    color: white;
-    font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #111;
+  font-size: 18px;
 }
 
-.nav-left a, .mobile-menu a {
-    color: white;
-    text-decoration: none;
-    margin-right: 15px;
-    font-weight: bold;
+.nav-left a, .nav-right a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.nav-left a:hover, .mobile-menu a:hover {
-    color: gold;
+.nav-left a:hover, .nav-right a:hover {
+  color: gold;
 }
 
-.nav-right {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+/* Wallet styling in nav */
+.wallet-display {
+  margin-right: 15px;
+  font-weight: bold;
+  color: white;
 }
 
-.mobile-menu-icon {
-    display: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
+.hero {
+  padding: 50px 20px;
 }
 
-.mobile-menu {
-    display: none;
-    flex-direction: column;
-    background-color: #111;
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    padding: 10px;
-    border: 2px solid gold;
-    border-radius: 8px;
-    z-index: 2000;
+.hero h1 {
+  font-size: 48px;
+  color: gold;
+  margin-bottom: 10px;
 }
 
-.mobile-menu a {
-    margin: 5px 0;
-    font-weight: bold;
+.tagline {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ccc;
+  margin-bottom: 30px;
 }
 
-.mobile-wallet {
-    display: none;
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: #111;
-    padding: 5px 10px;
-    border: 1px solid gold;
-    border-radius: 5px;
-    z-index: 3000;
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 50px;
 }
 
-@media (max-width: 768px) {
-    .nav-left, .desktop-menu {
-        display: none;
-    }
+.symbol {
+  width: 120px;
+  height: 120px;
+  border: 3px solid gold;
+  border-radius: 20px;
+  background-color: #222;
+  padding: 10px;
+  box-shadow: 0 0 15px gold;
+  object-fit: contain;
+}
 
-    .mobile-menu-icon {
-        display: block;
-    }
+.modes button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #222;
+  color: white;
+  border: 2px solid gold;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 
-    .mobile-wallet {
-        display: block;
-    }
+.modes button:hover:not([disabled]) {
+  background-color: gold;
+  color: black;
+}
+
+.modes button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
