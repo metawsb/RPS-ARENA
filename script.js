@@ -1,7 +1,7 @@
 // Clear any old timer when the page loads (for iPhone/Safari issues)
 document.addEventListener("DOMContentLoaded", function() {
-    const existingTimer = document.getElementById("timer");
-    if (existingTimer) existingTimer.remove();
+  const existingTimer = document.getElementById("timer");
+  if (existingTimer) existingTimer.remove();
 });
 
 let wallet = 10000;
@@ -32,13 +32,10 @@ function startMatch(amount) {
   document.getElementById("choices").style.display = "flex";
   updateHealthBars();
   resetHandStyles();
-}
 
-  // Always remove any previous timer
   const existingTimer = document.getElementById("timer");
   if (existingTimer) existingTimer.remove();
 
-  // Create a brand-new timer inside dynamic-timer-area
   let timerDiv = document.createElement("div");
   timerDiv.id = "timer";
   timerDiv.className = "timer";
@@ -177,6 +174,7 @@ function showResult() {
     addTrophy();
   } else {
     wallet -= wager;
+    if (wallet < 0) wallet = 0;  // Prevent negative balance
     totalGain -= wager;
     percentChange = ((totalGain / 10000) * 100).toFixed(1);
     message = `<span style='font-size:22px;'>BETTER LUCK NEXT TIME</span><br>
@@ -290,6 +288,8 @@ function autoLose() {
 }
 
 updateHealthBars();
+
+// ✅ Pop-up functions for balance warning
 
 function showBalanceWarning() {
   document.getElementById("balance-warning").style.display = "block";
