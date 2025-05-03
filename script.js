@@ -174,7 +174,7 @@ function showResult() {
     totalGain -= wager;
     percentChange = ((totalGain / 10000) * 100).toFixed(1);
     message = `<span style='font-size:22px;'>BETTER LUCK NEXT TIME</span><br>
-               <span>YOU'VE LOST</span><br>
+               <span style='font-size:22px;'>YOU'VE LOST</span><br>
                <span style='color:red; font-size:36px; font-weight:bold;'>-PHP ${wager}</span>`;
   }
 
