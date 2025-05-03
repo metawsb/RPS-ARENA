@@ -154,3 +154,52 @@ header {
   font-weight: bold;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+
+  .avatar {
+    width: 180px;
+    height: 180px;
+  }
+
+  .vs {
+    font-size: 32px;
+    margin: 10px 0;
+  }
+
+  .health-bar {
+    font-size: 24px;
+  }
+
+  .hand-display {
+    font-size: 50px;
+    flex-direction: column;
+  }
+
+  .choices button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 5px;
+  }
+
+  .wagers button {
+    font-size: 16px;
+    padding: 8px 16px;
+    margin: 5px;
+  }
+
+  .popup {
+    width: 90%;
+    font-size: 20px;
+    padding: 20px;
+  }
+
+  .reset-btn {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+}
+
