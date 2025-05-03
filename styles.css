@@ -32,6 +32,11 @@ header {
   color: gold;
 }
 
+.timer {
+  font-size: 22px;
+  margin-top: 10px;
+}
+
 .wallet-wrapper {
   text-align: center;
 }
@@ -72,11 +77,6 @@ header {
   cursor: pointer;
 }
 
-.wagers button:hover, .popup button:hover {
-  background-color: gold;
-  color: black;
-}
-
 #choices {
   display: flex;
   justify-content: center;
@@ -92,31 +92,11 @@ header {
   color: white;
   border: 2px solid gold;
   border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
-#choices button:hover {
-  background-color: gold;
-  color: black;
 }
 
 .reset-btn {
   margin-top: 20px;
   padding: 10px 25px;
-  background-color: #444;
-  color: white;
-  border: 2px solid gold;
-  border-radius: 8px;
-  font-size: 18px;
-}
-
-.reset-btn:hover {
-  background-color: gold;
-  color: black;
 }
 
 .hand-display {
@@ -128,22 +108,21 @@ header {
 
 .winner {
   color: gold;
-  font-size: 100px !important;
+  font-size: 100px;
 }
 
 .loser {
   opacity: 0.6;
-  font-size: 60px !important;
+  font-size: 60px;
 }
 
 .tie {
-  animation: pulseTie 1s infinite;
+  color: yellow;
 }
 
-@keyframes pulseTie {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes fadeHeart {
+  0% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(10px); }
 }
 
 .balance-change {
@@ -152,96 +131,38 @@ header {
   font-weight: bold;
 }
 
-.trophies img {
-  width: 70px;
-  height: 70px;
-  border-radius: 10px;
-  border: 2px solid gold;
-  margin: 5px;
-}
-
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: black;
-  color: white;
   border: 3px solid gold;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 0 20px gold;
-  z-index: 1000;
   font-size: 24px;
-  font-weight: bold;
   text-align: center;
-}
-
-@keyframes fadeHeart {
-  0% { opacity: 1; transform: translateX(0); }
-  100% { opacity: 0; transform: translateX(10px); }
 }
 
 @media (max-width: 768px) {
   header {
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
   }
 
   .avatar {
     width: 90px;
     height: 90px;
-    border-radius: 50%;
-  }
-
-  .vs {
-    display: none;
-  }
-
-  .player-name, .opponent-name {
-    font-size: 14px;
-  }
-
-  .health-bar {
-    font-size: 16px;
   }
 
   .hand-display {
     font-size: 40px;
-    gap: 10px;
   }
 
   .winner {
-    font-size: 100px !important;
+    font-size: 100px;
   }
 
   .loser {
-    font-size: 60px !important;
-  }
-
-  #choices button {
-    font-size: 16px;
-    padding: 8px 12px;
-  }
-
-  .wagers button {
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-
-  .balance-change {
-    font-size: 16px;
-  }
-
-  .popup {
-    width: 85%;
-    font-size: 18px;
-  }
-
-  .trophies img {
-    width: 40px;
-    height: 40px;
+    font-size: 60px;
   }
 }
