@@ -188,6 +188,12 @@ function showResult() {
 
   document.querySelector(".wallet-box").innerHTML = `WALLET: PHP ${wallet} ${gainText}`;
 
+  // 🔥 Update nav bar wallet too
+  const navWallet = document.getElementById("nav-wallet");
+  if (navWallet) {
+    navWallet.textContent = wallet;
+  }
+
   document.getElementById("result-message").innerHTML = message;
   document.getElementById("result-popup").style.display = "block";
 }
@@ -242,6 +248,10 @@ function fullReset() {
   wallet = 10000;
   totalGain = 0;
   document.querySelector(".wallet-box").innerHTML = "WALLET: PHP 10000";
+  const navWallet = document.getElementById("nav-wallet");
+  if (navWallet) {
+    navWallet.textContent = wallet;
+  }
   document.getElementById("trophy-case").innerHTML = "";
   document.getElementById("wager-selection").style.display = "block";
   document.getElementById("choices").style.display = "none";
