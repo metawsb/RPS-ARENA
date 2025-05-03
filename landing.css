@@ -1,7 +1,8 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(circle at top, #0a0a0a, #1a1a1a);
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: white;
   text-align: center;
 }
@@ -35,7 +36,6 @@ nav {
   margin-bottom: 10px;
 }
 
-/* ✅ Tagline styling */
 .tagline {
   font-size: 24px;
   font-weight: bold;
