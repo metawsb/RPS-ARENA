@@ -38,10 +38,10 @@ header {
   font-size: 24px;
   border-radius: 10px;
   margin-top: 10px;
-  margin-bottom: 20px;  /* ADD THIS */
+  margin-bottom: 20px;
   font-weight: bold;
+  display: inline-block; /* ADD THIS */
 }
-
 
 .health-bar {
   font-size: 28px;
