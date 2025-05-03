@@ -8,7 +8,7 @@ let timerValue = 10;
 let timerInterval = null;
 let playerWins = 0;
 let opponentWins = 0;
-let roundInProgress = false; // Prevents multiple timers
+let roundInProgress = false; // Prevents multiple starts
 
 // Update wallet UI
 function updateWalletDisplay() {
@@ -33,14 +33,23 @@ document.addEventListener("DOMContentLoaded", function() {
     updateWalletDisplay();
 });
 
-// Start match
+// Start match — now protected against double-click
 function startMatch(amount) {
+    if (roundInProgress) return; // Block double clicks
+    roundInProgress = true;  // Lock the round
+
     stopTimer();
+
     if (amount > wallet) {
         document.getElementById("balance-warning").style.display = "block";
+        roundInProgress = false; // Allow retrying
         return;
     }
     wagerAmount = amount;
+
+    // Disable wager buttons immediately to prevent spam clicks
+    document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = true);
+
     currentOpponent = generateOpponent();
     document.getElementById("opponent-name").textContent = currentOpponent.name;
     document.getElementById("opponent-avatar").src = currentOpponent.avatar;
@@ -52,11 +61,9 @@ function startMatch(amount) {
     playerWins = 0;
     opponentWins = 0;
     updateScoreDisplay();
-    roundInProgress = true;
     resetTimer();
 }
 
-// Opponent randomizer
 function generateOpponent() {
     const opponents = [
         { name: "Justin Bieber", avatar: "images/opponent1.png" },
@@ -77,7 +84,7 @@ function resetHands() {
 }
 
 function play(choice) {
-    if (!roundInProgress) return; // Prevent playing when no wager picked
+    if (!roundInProgress) return; // Block playing without wager
     stopTimer();
     const choices = ["rock", "paper", "scissors"];
     const opponentChoice = choices[Math.floor(Math.random() * 3)];
@@ -168,10 +175,13 @@ function newMatch() {
     playerWins = 0;
     opponentWins = 0;
     roundInProgress = false;
+
+    // Re-enable wager buttons
+    document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
 function rematch() {
-    if (playerWins >= 3 || opponentWins >= 3) return newMatch(); // Start new if match over
+    if (playerWins >= 3 || opponentWins >= 3) return newMatch();
     resetHands();
     document.getElementById("result-popup").style.display = "none";
     roundInProgress = true;
@@ -184,7 +194,12 @@ function endMatch() {
     document.getElementById("wager-selection").style.display = "block";
     document.getElementById("result-popup").style.display = "none";
     document.getElementById("balance-change").textContent = "";
+    playerWins = 0;
+    opponentWins = 0;
     roundInProgress = false;
+
+    // Re-enable wager buttons
+    document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
 function closeBalanceWarning() {
@@ -204,6 +219,9 @@ function fullReset() {
     playerWins = 0;
     opponentWins = 0;
     roundInProgress = false;
+
+    // Re-enable wager buttons
+    document.querySelectorAll("#wager-selection button").forEach(btn => btn.disabled = false);
 }
 
 // Timer Functions
@@ -212,7 +230,6 @@ function resetTimer() {
     timerValue = 10;
     updateTimerDisplay();
 
-    // Prevent starting if no wager picked
     if (!roundInProgress || wagerAmount === 0) return;
 
     timerInterval = setInterval(() => {
