@@ -4,7 +4,7 @@ body {
   color: white;
   text-align: center;
   margin: 0;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 header {
@@ -12,7 +12,7 @@ header {
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  flex-wrap: wrap; /* Prevent overflow */
+  flex-wrap: wrap;
 }
 
 .avatar {
@@ -168,7 +168,7 @@ button:hover {
   margin: 5px;
 }
 
-/* MOBILE NAVIGATION FOR GAME PAGE */
+/* MOBILE NAVIGATION */
 .mobile-menu-icon {
   display: none;
   font-size: 30px;
@@ -198,7 +198,8 @@ button:hover {
   padding: 5px 10px;
   width: 100%;
   text-align: right;
-  font-weight: bold; /* MAKE THE WORDS BOLD */
+  font-weight: 700; /* Guaranteed bold */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .mobile-menu a:hover {
@@ -208,7 +209,6 @@ button:hover {
 /* RESPONSIVE */
 @media (max-width: 768px) {
 
-  /* Keep player and opponent SIDE BY SIDE even on mobile */
   header {
     flex-direction: row;
     justify-content: center;
@@ -253,16 +253,3 @@ button:hover {
   .popup {
     padding: 20px;
     font-size: 18px;
-  }
-
-  .nav-left, .desktop-menu {
-    display: none;
-  }
-
-  .mobile-menu-icon {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-}
