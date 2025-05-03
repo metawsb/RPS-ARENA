@@ -19,7 +19,7 @@
   </div>
   <div>
     <div class="vs">VS</div>
-    <div id="timer-placeholder"></div> <!-- Timer will be created dynamically here -->
+    <!-- No timer-placeholder here anymore -->
   </div>
   <div class="opponent-section">
     <img id="opponent-avatar" src="images/opponent1.png" class="avatar" alt="Opponent">
@@ -51,6 +51,9 @@
     <button onclick="play('paper')">✋ Paper</button>
     <button onclick="play('scissors')">✌️ Scissors</button>
   </div>
+
+  <!-- Timer will be created here instead -->
+  <div id="dynamic-timer-area"></div>
 
   <div class="hand-display">
     <div id="player-hand">❔</div>
