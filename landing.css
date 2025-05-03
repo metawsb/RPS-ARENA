@@ -9,7 +9,7 @@ body {
   background-size: cover;
   color: white;
   text-align: center;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 /* NAVIGATION */
@@ -34,7 +34,7 @@ nav {
   color: gold;
 }
 
-/* Wallet styling (for game.html, kept here for consistency) */
+/* Wallet styling (game page consistency) */
 .wallet-display {
   margin-right: 15px;
   font-weight: bold;
@@ -126,7 +126,7 @@ nav {
   padding: 5px 10px;
   width: 100%;
   text-align: right;
-  font-weight: 700; /* Guaranteed bold */
+  font-weight: 700;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -134,9 +134,8 @@ nav {
   color: gold;
 }
 
-/* RESPONSIVE STYLES */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-
   .nav-left, .desktop-menu {
     display: none;
   }
