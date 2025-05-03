@@ -12,13 +12,17 @@
   <div class="player-section">
     <img src="images/warrior.png" class="avatar" alt="Player">
     <div class="player-name">Player</div>
-    <div class="health-bar" id="player-health"></div>
+    <div class="health-bar" id="player-health">
+      <span id="player-lost" class="lost-heart"></span>
+    </div>
   </div>
   <div class="vs">VS</div>
   <div class="opponent-section">
     <img id="opponent-avatar" src="images/opponent1.png" class="avatar" alt="Opponent">
     <div id="opponent-name" class="opponent-name">Justin Bieber</div>
-    <div class="health-bar" id="opponent-health"></div>
+    <div class="health-bar" id="opponent-health">
+      <span id="opponent-lost" class="lost-heart"></span>
+    </div>
   </div>
 </header>
 
@@ -56,7 +60,6 @@
   <button class="reset-btn" onclick="fullReset()">RESET ALL</button>
 </main>
 
-<!-- Result Popup -->
 <div id="result-popup" class="popup" style="display:none;">
   <div id="result-message"></div>
   <button onclick="newMatch()">New Match</button>
