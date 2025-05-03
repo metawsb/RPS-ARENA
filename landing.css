@@ -35,10 +35,10 @@ nav {
   margin-bottom: 10px;
 }
 
-.hero p {
-  font-size: 22px;
+.tagline {
+  font-size: 24px;
+  font-weight: bold;
   color: #ccc;
-  margin-bottom: 40px;
 }
 
 .icons {
@@ -79,5 +79,3 @@ nav {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-
