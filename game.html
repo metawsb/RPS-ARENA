@@ -118,7 +118,7 @@
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
 
-  // Update mobile wallet when balance changes
+  // Keep mobile wallet balance updated
   function syncMobileWallet() {
     const navWallet = document.getElementById('nav-wallet');
     const navWalletMobile = document.getElementById('nav-wallet-mobile');
@@ -126,6 +126,8 @@
       navWalletMobile.textContent = navWallet.textContent;
     }
   }
+  setInterval(syncMobileWallet, 1000);
+</script>
   // Call sync when the page loads and every second (in case balance changes)
   setInterval(syncMobileWallet, 1000);
 </script>
