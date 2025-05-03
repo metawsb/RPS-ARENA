@@ -74,8 +74,8 @@ nav {
   border: 2px solid gold;
   border-radius: 10px;
   cursor: pointer;
-  text-transform: uppercase;  /* ALL CAPS */
-  font-weight: bold;          /* Bold text */
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .modes button:hover:not([disabled]) {
