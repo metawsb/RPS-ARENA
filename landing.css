@@ -2,15 +2,14 @@ body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(
-      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7), 
       rgba(0, 0, 0, 0.7)
-    ),
+    ), 
     url('images/background.jpg') no-repeat center center fixed;
   background-size: cover;
   color: white;
   text-align: center;
 }
-
 
 nav {
   display: flex;
@@ -75,6 +74,8 @@ nav {
   border: 2px solid gold;
   border-radius: 10px;
   cursor: pointer;
+  text-transform: uppercase;  /* ALL CAPS */
+  font-weight: bold;          /* Bold text */
 }
 
 .modes button:hover:not([disabled]) {
