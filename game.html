@@ -9,18 +9,22 @@
 </head>
 <body>
 
-<!-- NAVIGATION BAR -->
 <nav>
-  <div class="nav-left">
+  <div class="wallet-display">
+    WALLET: PHP <span id="nav-wallet">10000</span>
+    <span id="nav-gain" style="color: limegreen; font-weight: normal;">(+PHP 0 / 0%)</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">HOME</a>
     <a href="#">LEADERBOARD</a>
     <a href="#" onclick="openTrophiesModal()">TROPHIES</a>
-  </div>
-  <div class="nav-right">
-    <span class="wallet-display">
-      WALLET: PHP <span id="nav-wallet">10000</span>
-      <span id="nav-gain" style="color: limegreen; font-weight: normal;">(+PHP 0 / 0%)</span>
-    </span>
     <a href="#">SIGN OUT</a>
   </div>
 </nav>
@@ -34,9 +38,7 @@
       <span id="player-lost" class="lost-heart"></span>
     </div>
   </div>
-  <div>
-    <div class="vs">VS</div>
-  </div>
+  <div><div class="vs">VS</div></div>
   <div class="opponent-section">
     <img id="opponent-avatar" src="images/opponent1.png" class="avatar" alt="Opponent">
     <div id="opponent-name" class="opponent-name">Justin Bieber</div>
@@ -63,18 +65,15 @@
   </div>
 
   <div id="dynamic-timer-area"></div>
-
   <div class="hand-display">
     <div id="player-hand">❔</div>
     <div id="opponent-hand">❔</div>
   </div>
 
   <div id="balance-change" class="balance-change"></div>
-
   <button class="reset-btn" onclick="fullReset()">RESET ALL</button>
 </main>
 
-<!-- Result pop-up -->
 <div id="result-popup" class="popup" style="display:none;">
   <div id="result-message"></div>
   <button onclick="newMatch()">New Match</button>
@@ -82,13 +81,11 @@
   <button onclick="endMatch()">End</button>
 </div>
 
-<!-- Not enough balance pop-up -->
 <div id="balance-warning" class="popup" style="display:none;">
   <div>You can't bet more than your Wallet balance!</div>
   <button onclick="closeBalanceWarning()">OK</button>
 </div>
 
-<!-- TROPHIES MODAL -->
 <div id="trophies-modal" class="popup" style="display:none;">
   <h2>Your Trophies</h2>
   <div id="trophies-list" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;"></div>
@@ -97,5 +94,10 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('show');
+}
+</script>
 </body>
 </html>
