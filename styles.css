@@ -219,5 +219,11 @@ button:hover {
   .mobile-menu.show {
     display: flex;
   }
+    
+}
+.menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    cursor: pointer;
 }
 
