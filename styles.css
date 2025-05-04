@@ -165,7 +165,7 @@ button:hover {
     }
 }
 
-/* --- MOBILE ONLY WALLET & MENU --- */
+/* --- MOBILE WALLET & MENU (Game Page Only) --- */
 @media (max-width: 768px) {
   nav {
     display: flex;
@@ -173,7 +173,6 @@ button:hover {
     align-items: center;
     padding: 10px 20px;
     background-color: #111;
-    font-size: 18px;
     position: relative;
   }
 
@@ -209,7 +208,6 @@ button:hover {
     border: 2px solid gold;
     border-radius: 6px;
     padding: 10px;
-    z-index: 1000;
   }
 
   .mobile-menu a {
@@ -219,17 +217,8 @@ button:hover {
     font-weight: bold;
   }
 
-  .mobile-menu a:hover {
-    color: gold;
-  }
-
   .mobile-menu.show {
     display: flex;
   }
 }
 
-
-  .mobile-menu.show {
-    display: flex;
-  }
-}
