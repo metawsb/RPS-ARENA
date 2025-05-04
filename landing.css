@@ -27,7 +27,7 @@ nav {
   font-weight: bold;
 }
 
-/* Wallet styling in nav */
+/* Wallet styling (not used in landing) */
 .wallet-display {
   margin-right: 15px;
   font-weight: bold;
@@ -139,6 +139,11 @@ nav {
 @media (min-width: 769px) {
     .nav-left, .nav-right {
         display: none !important;
+    }
+
+    /* Push hamburger to right on desktop */
+    .menu-toggle {
+        margin-left: auto;
     }
 }
 
