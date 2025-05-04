@@ -164,6 +164,7 @@ button:hover {
         font-size: 20px;
     }
 }
+
 /* --- MOBILE ONLY WALLET & MENU --- */
 @media (max-width: 768px) {
   nav {
@@ -221,6 +222,12 @@ button:hover {
   .mobile-menu a:hover {
     color: gold;
   }
+
+  .mobile-menu.show {
+    display: flex;
+  }
+}
+
 
   .mobile-menu.show {
     display: flex;
