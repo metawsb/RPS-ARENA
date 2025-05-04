@@ -164,3 +164,8 @@ nav {
   }
 }
 
+.menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    cursor: pointer;
+}
