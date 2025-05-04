@@ -107,11 +107,11 @@ nav {
     position: relative;
   }
 
-  .menu-toggle {
-    display: flex;
+ .menu-toggle {
+    display: flex; /* Always visible now */
     flex-direction: column;
     cursor: pointer;
-  }
+}
 
   .menu-toggle span {
     background-color: white;
