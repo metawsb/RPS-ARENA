@@ -96,30 +96,21 @@ nav {
   cursor: not-allowed;
 }
 
-/* --- MOBILE ONLY WALLET & MENU --- */
+/* --- MOBILE MENU ONLY (Landing) --- */
 @media (max-width: 768px) {
   nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px 20px;
     background-color: #111;
-    font-size: 18px;
     position: relative;
-  }
-
-  .wallet-display {
-    font-weight: bold;
-    color: white;
-    font-size: 18px;
-    order: 1;
   }
 
   .menu-toggle {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    order: 2;
   }
 
   .menu-toggle span {
@@ -140,7 +131,6 @@ nav {
     border: 2px solid gold;
     border-radius: 6px;
     padding: 10px;
-    z-index: 1000;
   }
 
   .mobile-menu a {
@@ -150,11 +140,27 @@ nav {
     font-weight: bold;
   }
 
-  .mobile-menu a:hover {
-    color: gold;
-  }
-
   .mobile-menu.show {
     display: flex;
   }
+
+  /* Fix scaling for mobile */
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .tagline {
+    font-size: 16px;
+  }
+
+  .symbol {
+    width: 80px;
+    height: 80px;
+  }
+
+  .modes button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
 }
+
