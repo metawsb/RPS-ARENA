@@ -95,3 +95,65 @@ nav {
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* --- MOBILE ONLY WALLET & MENU --- */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #111;
+    font-size: 18px;
+    position: relative;
+  }
+
+  .wallet-display {
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
+    order: 1;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    order: 2;
+  }
+
+  .menu-toggle span {
+    background-color: white;
+    height: 3px;
+    width: 25px;
+    margin: 4px 0;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #222;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 150px;
+    border: 2px solid gold;
+    border-radius: 6px;
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  .mobile-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 0;
+    font-weight: bold;
+  }
+
+  .mobile-menu a:hover {
+    color: gold;
+  }
+
+  .mobile-menu.show {
+    display: flex;
+  }
+}
