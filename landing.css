@@ -95,6 +95,7 @@ nav {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 /* --- MOBILE ONLY WALLET & MENU --- */
 @media (max-width: 768px) {
   nav {
