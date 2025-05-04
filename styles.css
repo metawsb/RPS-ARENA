@@ -154,10 +154,9 @@ button:hover {
   word-wrap: break-word;
 }
 
-/* --- MOBILE MENU & HAMBURGER --- */
-
+/* --- Hamburger & Dropdown --- */
 .menu-toggle {
-    display: flex !important;   /* Always visible */
+    display: flex !important;
     flex-direction: column;
     cursor: pointer;
 }
@@ -176,7 +175,7 @@ button:hover {
     position: absolute;
     top: 50px;
     right: 10px;
-    width: 160px;
+    width: 200px;
     border: 2px solid gold;
     border-radius: 6px;
     padding: 10px;
@@ -186,7 +185,7 @@ button:hover {
 .mobile-menu a {
     color: white;
     text-decoration: none;
-    padding: 8px 0;
+    padding: 10px 0;
     font-weight: bold;
 }
 
@@ -198,7 +197,14 @@ button:hover {
     display: flex;
 }
 
-/* --- Responsive tweaks --- */
+/* --- Hide old nav links on desktop --- */
+@media (min-width: 769px) {
+    .nav-left, .nav-right {
+        display: none !important;
+    }
+}
+
+/* --- Mobile tweaks --- */
 @media (max-width: 768px) {
   header {
     flex-direction: row;
@@ -210,40 +216,24 @@ button:hover {
   }
 
   .hand-display {
-    font-size:
-/* --- FINAL HAMBURGER FIX --- */
+    font-size: 40px;
+  }
 
-/* Hide old desktop nav links */
-.nav-left, .nav-right {
-    display: none !important;
-}
+  .winner {
+    font-size: 100px !important;
+  }
 
-/* Hamburger always visible */
-.menu-toggle {
-    display: flex !important;
-    flex-direction: column;
-    cursor: pointer;
-}
+  .loser {
+    font-size: 60px !important;
+  }
 
-.menu-toggle span {
-    background-color: white;
-    height: 3px;
-    width: 25px;
-    margin: 4px 0;
-}
+  #choices button {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
 
-/* Dropdown menu appearance */
-.mobile-menu.show {
-    display: flex;
-}
-
-/* Centered dropdown links */
-.mobile-menu {
-    flex-direction: column;
-    align-items: center;
-}
-
-.mobile-menu a {
-    font-weight: bold;
-    text-align: center;
+  .trophies img {
+    width: 40px;
+    height: 40px;
+  }
 }
