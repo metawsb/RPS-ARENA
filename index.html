@@ -9,11 +9,20 @@
 <body>
 
   <nav>
-    <div class="nav-left">
-      <a href="#">HOME</a>
-      <a href="#">LEADERBOARD</a>
+    <div class="wallet-display">
+      WALLET: PHP <span id="nav-wallet">10000</span>
+      <span id="nav-gain" style="color: limegreen; font-weight: normal;">(+PHP 0 / 0%)</span>
     </div>
-    <div class="nav-right">
+
+    <div class="menu-toggle" onclick="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">HOME</a>
+      <a href="#">LEADERBOARD</a>
       <a href="#">LOGIN</a>
       <a href="#">SIGN UP</a>
     </div>
@@ -34,6 +43,12 @@
       <button disabled>Settings</button>
     </div>
   </header>
+
+<script>
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('show');
+}
+</script>
 
 </body>
 </html>
